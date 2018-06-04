@@ -51,7 +51,7 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'spring-commands-rspec'
   gem 'guard-rspec', require: false #自動でテスト
-  gem "factory_girl_rails"
+  gem "factory_bot_rails"
   gem 'launchy'
   gem 'selenium-webdriver'
   gem 'shoulda-matchers'
