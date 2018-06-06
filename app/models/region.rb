@@ -1,3 +1,3 @@
 class Region < ApplicationRecord
-	has_many :area
+	has_many :areas
 end

@@ -1,0 +1,32 @@
+header {
+	height: 70px;
+	div {
+	height: 70px;
+	}
+
+	// 真ん中
+	.center-box {
+		padding: 0;
+
+		.header-top, .header-bottom {
+			height: 35px;
+			border: 1px solid #ccc;
+
+			.item {
+				height: 100%;
+				width: 32.6%;
+				display: inline-block;
+				text-align: center;
+
+				a {
+					font-size: 22px;
+				}
+			}
+			.item:nth-child(even) {
+				border-left: 1px solid #ccc;
+				border-right: 1px solid #ccc;
+			}
+		}
+	}
+
+}
