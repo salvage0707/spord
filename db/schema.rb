@@ -61,34 +61,37 @@ ActiveRecord::Schema.define(version: 2018_06_04_103853) do
 
   create_table "boards", force: :cascade do |t|
     t.string "name"
-    t.integer "sports_id"
+    t.integer "sport_id"
     t.date "do_date"
     t.integer "area_id"
     t.string "city"
     t.date "closing_date"
-    t.integer "max_prople"
+    t.string "place"
+    t.integer "max_people"
     t.string "image_id"
     t.text "introduction"
     t.integer "manager_user_id"
     t.integer "community_id"
     t.integer "delete_flag"
+    t.string "qualification"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["area_id"], name: "index_boards_on_area_id"
     t.index ["city"], name: "index_boards_on_city"
     t.index ["community_id"], name: "index_boards_on_community_id"
     t.index ["name"], name: "index_boards_on_name"
-    t.index ["sports_id"], name: "index_boards_on_sports_id"
+    t.index ["sport_id"], name: "index_boards_on_sport_id"
   end
 
   create_table "communities", force: :cascade do |t|
     t.string "name"
-    t.integer "sports_id"
+    t.integer "sport_id"
     t.string "active_date"
     t.integer "area_id"
     t.string "city"
     t.integer "max_people"
     t.string "qualification"
+    t.string "place"
     t.text "introduction"
     t.string "image_id"
     t.integer "delete_flag"
@@ -98,7 +101,7 @@ ActiveRecord::Schema.define(version: 2018_06_04_103853) do
     t.index ["area_id"], name: "index_communities_on_area_id"
     t.index ["city"], name: "index_communities_on_city"
     t.index ["name"], name: "index_communities_on_name"
-    t.index ["sports_id"], name: "index_communities_on_sports_id"
+    t.index ["sport_id"], name: "index_communities_on_sport_id"
   end
 
   create_table "community_purposes", force: :cascade do |t|

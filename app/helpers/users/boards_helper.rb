@@ -1,2 +1,6 @@
 module Users::BoardsHelper
+
+
+
+
 end

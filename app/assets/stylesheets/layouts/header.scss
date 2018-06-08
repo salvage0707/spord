@@ -1,15 +1,20 @@
 header {
-	height: 70px;
+	height: 80px;
+	border-bottom: 2px solid #ccc;
+	background-color: #202020;
+	color: white;
 	div {
-	height: 70px;
+	height: 80px;
 	}
 
 	// 真ん中
 	.center-box {
 		padding: 0;
+		border-left: 2px solid #ccc;
+		border-right: 2px solid #ccc;
 
 		.header-top, .header-bottom {
-			height: 35px;
+			height: 40px;
 			border: 1px solid #ccc;
 
 			.item {
@@ -17,15 +22,23 @@ header {
 				width: 32.6%;
 				display: inline-block;
 				text-align: center;
-
 				a {
-					font-size: 22px;
+					font-size: 17px;
+					color: white;
+					line-height: 2em;
 				}
 			}
 			.item:nth-child(even) {
-				border-left: 1px solid #ccc;
-				border-right: 1px solid #ccc;
+				border-left: 2px solid #ccc;
+				border-right: 2px solid #ccc;
 			}
+		}
+	}
+
+	.right-box {
+
+		.fa-sign-in-alt {
+			font-size: 70px;
 		}
 	}
 

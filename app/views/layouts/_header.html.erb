@@ -1,10 +1,10 @@
-<header>
+<header class="clearfix">
 	<div class="row">
 		<!-- 左 -->
-		<div class="col-md-3" style="background-color: red;"></div>
+		<div class="col-md-3" ></div>
 
 		<!-- 真ん中 -->
-		<div class="col-md-6 center-box" style="background-color: blue;">
+		<div class="col-md-6 center-box" >
 			<!-- 上 -->
 			<div class="header-top"></div>
 			<!-- 下 -->
@@ -25,6 +25,14 @@
 		</div>
 
 		<!-- 右 -->
-		<div class="col-md-3" style="background-color: red;"></div>
+		<div class="col-md-3 right-box">
+			<% if user_signed_in? %>
+				<%= current_user.name %>
+			<% else %>
+					<%= link_to "ログイン", new_user_session_path  %>
+					<span> | </span>
+					<%= link_to "新規登録", new_user_registration_path  %>
+			<% end %>
+		</div>
 	</div>
 </header>

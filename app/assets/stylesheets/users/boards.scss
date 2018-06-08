@@ -1,3 +1,157 @@
 // Place all the styles related to the Users::boards controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+// 画面上部の大きい画像
+.big-bg-iamge {
+	width: 100%;
+	height: 600px;
+	background-position: center;
+	background-size: cover;
+}
+
+// index
+// 募集一覧
+.board-content {
+
+	h3 {
+		background-color: black;
+		color: white;
+		margin-top: 30px;
+		padding-left: 100px;
+		font-size: 40px;
+	}
+
+	.container {
+		margin-top: 40px;
+		height: 100%;
+
+		.item {
+			margin-bottom: 50px;
+			border: 2px solid #000;
+
+			.item-content {
+				margin: 30px;
+
+				img {
+				width: 364px;
+				height: 340px;
+				float: left;
+				}
+
+				.details {
+					width: 62%;
+					margin-left: 30px;
+					float: left;
+
+					h4 {
+						font-size: 40px;
+						display: block;
+					}
+
+					// 下に表示
+				}
+			}
+		}
+	}
+}
+
+// タグ
+.tags {
+		display: block;
+	li {
+		list-style: none;
+		font-size: 16px;
+		float: left;
+		padding: 5px;
+		margin-right: 10px;
+		display: inline-block;
+		background-color: #ccc;
+		border: 1px solid #a9a9a9;
+		border-radius: 3px;
+	}
+}
+
+// 詳細の表示
+.details-table {
+	display: block;
+	margin-top: 20px;
+
+	li {
+		width: 100%;
+		margin-top: 5px;
+		list-style: none;
+		border-bottom: 1px solid #a9a9a9;
+
+		p {
+			width: 60%;
+			font-size: 14px;
+			display: inline-block;
+		}
+		p:first-child {
+			text-align: center;
+			margin-right: 10px;
+			width: 30%;
+			font-size: 17px;
+		}
+	}
+}
+
+// 詳細のテキスト
+.details-text {
+	border: 2px solid #ccc;
+	border-radius: 5px;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	height: 100%;
+	p {
+		font-size: 17px;
+	}
+}
+
+// show
+// 募集詳細
+.board-detail-content {
+
+	.container {
+		margin-top: 80px;
+	}
+	h4 {
+		margin-top: 20px;
+		font-size: 30px;
+	}
+
+	img {
+		width: 500px;
+		height: 500px;
+	}
+
+	.tags {
+		margin: 10px 0;
+	}
+
+	.details-table li { //ulの設定
+		margin-top: 10px;
+
+		p {
+			font-size: 16px;
+		}
+		p:first-child {
+			font-weight: bold;
+			font-size: 16px;
+		}
+	}
+	.details-text {
+		margin-top: 20px;
+	}
+}
+
+
+
+
+
+
+
+
+

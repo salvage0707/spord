@@ -1,0 +1,7 @@
+<!-- 画面上部の大きい画像 -->
+<div>
+	<div class="big-bg-iamge" style="background-image: url(<%= asset_path "sports01.jpg" %>)"></div>
+</div>
+
+<!-- 新規募集一覧を表示 -->
+<%= render 'users/boards/board_index_item', title: "新規募集一覧", boards: @new_boards %>

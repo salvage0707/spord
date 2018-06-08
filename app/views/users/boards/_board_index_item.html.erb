@@ -1,0 +1,57 @@
+<!-- 使用変数 title: 帯のタイトル, boards: 募集の集まり-->
+<div class="board-content">
+	<h3>
+		<%= title %>
+	</h3>
+
+	<div class="container clearfix">
+		<div class="row">
+			<% boards.each do |board| %>
+				<div class="item clearfix">
+				<!-- 募集内容詳細 -->
+					<div class="item-content clearfix">
+					<!-- 画像 -->
+						<%= image_tag "sports02.jpg" %>
+
+						<!-- 詳細情報 -->
+						<div class="details">
+							<h4>みんなで遊ぼう！</h4>
+
+								<ul class="tags clearfix">
+									<li>初心者</li>
+									<li>中級者</li>
+									<li>楽しく</li>
+								</ul>
+
+							<div class="row">
+								<div class="col-md-7">
+									<ul class="details-table">
+										<!-- ジャンル -->
+										<%= detail_list "ジャンル", board.sport.name %>
+										<!-- 応募資格 -->
+										<%= detail_list "応募資格", "楽しくスポーツしたああああああああああい人！" %>
+										<!-- 区域 -->
+										<%= detail_list "区域", "#{board.area.name.to_s}  #{board.city.to_s}" %>
+										<!-- 場所 -->
+										<%= detail_list "場所", board.place %>
+										<!-- 日時 -->
+										<%= detail_list "日時", board.do_date %>
+										<!-- 人数 -->
+										<%= detail_list "人数", "10" + " / " + board.max_people.to_s  %>
+										<!-- 締切日 -->
+										<%= detail_list "締切日", board.closing_date %>
+									</ul>
+								</div>
+								<div class="col-md-5 details-text">
+									<p>
+										<%= board.introduction %>
+									</p>
+								</div>
+							</div>
+						</div><!-- details -->
+					</div><!-- item-content -->
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
