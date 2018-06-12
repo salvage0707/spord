@@ -1,4 +1,8 @@
 class Board < ApplicationRecord
+
+	# refileの設定
+	attachment :image
+
 	belongs_to :community, required: false
 	belongs_to :area
 	belongs_to :sport
@@ -7,9 +11,17 @@ class Board < ApplicationRecord
 	has_many :board_purposes
 	has_many :msg_to_boards
 	has_many :board_users
+	has_many :board_ranks
 	# 多対多
 	has_many :users, through: :board_users
 	has_many :purposes, through: :board_purposes
+	has_many :ranks, through: :board_ranks
+
+	validates :do_date, :closing_date, :introduction, :qualification, presence: true
+	validates :name, presence: true, length: { in: 2.. 100 }
+	validates :city, presence: true, length: { in: 2..10 }
+	validates :max_people, presence: true, length: { in: 1..100 }
+	validates :place, presence: true, length: { in: 2..100 }
 
 
 end

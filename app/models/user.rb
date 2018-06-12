@@ -4,6 +4,8 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  attachment :image
+
   belongs_to :area
   has_many :msg_to_user
   has_many :msg_to_board

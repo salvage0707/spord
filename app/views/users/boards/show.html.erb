@@ -2,52 +2,74 @@
 	<div class="container">
 		<div class="row">
 			<!-- 画像を表示 -->
-			<div class="col-md-6">
-				<%= image_tag "sports02.jpg" %>
-			</div>
+			<div class="clearfix">
+				<div class="col-md-6">
+					<%= image_tag "sports02.jpg" %>
+				</div>
 
-			<div class="col-md-6">
-				<h4>
-					<%= @board.name %>
-				</h4>
+				<div class="col-md-6">
+					<h4>
+						<%= @board.name %>
+					</h4>
 
-				<ul class="tags clearfix">
-					<li>初心者</li>
-					<li>中級者</li>
-					<li>楽しく</li>
-				</ul>
+					<ul class="tags clearfix">
+						<li>初心者</li>
+						<li>中級者</li>
+						<li>楽しく</li>
+					</ul>
 
-				<ul class="details-table">
-					<!-- ジャンル -->
-					<%= detail_list "ジャンル", @board.sport.name %>
-					<!-- 応募資格 -->
-					<%= detail_list "応募資格", "楽しくスポーツしたああああああああああい人！" %>
-					<!-- 区域 -->
-					<%= detail_list "区域", @board.area.name.to_s + "  " + @board.city.to_s %>
-					<!-- 場所 -->
-					<%= detail_list "場所", @board.place %>
-					<!-- 日時 -->
-					<%= detail_list "日時", @board.do_date %>
-					<!-- 人数 -->
-					<%= detail_list "人数", "10" + " / " + @board.max_people.to_s  %>
-					<!-- 締切日 -->
-					<%= detail_list "締切日", @board.closing_date %>
-					<!-- コミュニティ名 -->
-					<%= detail_list "コミュニティ名", "新規コミュニティ" if @board.community_id %>
-					<!-- 作成者 -->
-					<%= detail_list "作成者", @board.manager_user.name %>
-				</ul>
-				<!-- 募集紹介ぶん -->
-				<div class="details-text">
-					<p>
-						<%= @board.introduction %>
-					</p>
+					<ul class="details-table">
+						<!-- ジャンル -->
+						<%= detail_list "ジャンル", @board.sport.name %>
+						<!-- 応募資格 -->
+						<%= detail_list "応募資格", "楽しくスポーツしたああああああああああい人！" %>
+						<!-- 区域 -->
+						<%= detail_list "区域", @board.area.name.to_s + "  " + @board.city.to_s %>
+						<!-- 場所 -->
+						<%= detail_list "場所", @board.place %>
+						<!-- 日時 -->
+						<%= detail_list "日時", @board.do_date %>
+						<!-- 人数 -->
+						<%= detail_list "人数", "10" + " / " + @board.max_people.to_s  %>
+						<!-- 締切日 -->
+						<%= detail_list "締切日", @board.closing_date %>
+						<!-- コミュニティ名 -->
+						<%= detail_list "コミュニティ名", "新規コミュニティ" if @board.community_id %>
+						<!-- 作成者 -->
+						<%= detail_list "作成者", @board.manager_user.name %>
+					</ul>
+					<!-- 募集紹介ぶん -->
+					<div class="details-text">
+						<p>
+							<%= @board.introduction %>
+						</p>
+					</div>
 				</div>
 			</div>
 
-			<!-- グラフ -->
-			<div class="charts">
-				
+			<div class="charts-recests">
+				<!-- グラフ -->
+				<div class="charts col-md-7">
+				</div>
+
+				<!-- 申請などの一覧 -->
+				<div class="requests col-md-5">
+					<div class="item-box">
+						<!-- 作成者のみに制限 -->
+						<% if @board.manager_user == current_user && user_signed_in? %>
+							<%= link_to "募集を編集", edit_board_path(@board.id), class: "item" %>
+							<%= link_to "申請一覧", '#' %>
+						<% end %>
+						<!-- 作成者以外 -->
+						<%  %>
+							<%= link_to "参加申請", new_board_board_users_path(board_id: @board.id), class: "item" %>
+						<%  %>
+							<%= link_to "申請取り消し", "#", class: "item" %>
+						<%  %>
+							<%= link_to "募集から抜ける", "#",  class: "item" %>
+						<%  %>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

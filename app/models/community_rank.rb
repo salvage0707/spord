@@ -1,0 +1,2 @@
+class CommunityRank < ApplicationRecord
+end

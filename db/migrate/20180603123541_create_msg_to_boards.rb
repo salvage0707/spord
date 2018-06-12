@@ -4,7 +4,7 @@ class CreateMsgToBoards < ActiveRecord::Migration[5.2]
       t.integer :board_id
       t.integer :user_id
       t.string :message
-      t.boolean :read
+      t.boolean :read, default: false
 
       t.timestamps
     end

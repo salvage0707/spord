@@ -1,0 +1,107 @@
+<!-- 使用変数 board: Board変数, purposes: Purpose.all変数, ranks: Rank.all変数, areas: Area.all変数 -->
+<div class="board-detail-content">
+	<div class="container">
+		<div class="row">
+
+		<h2 class="form-title">新規募集投稿フォーム</h2>
+
+			<%= form_for board do |f| %>
+
+				<!-- 画像を表示 -->
+				<div class="col-md-6">
+					<%= f.attachment_field :image %>
+				</div>
+
+				<div class="col-md-6">
+					<!-- 募集名入力 -->
+					<h4>
+						<%= f.text_field :name, class: "board-form-title",
+								placeholder: "タイトル" %>
+					</h4>
+
+					<!-- 目的  -->
+					<p class="tags-label">目的</p>
+					<ul class="tags clearfix">
+						<% purposes.each do |purpose|  %>
+							<li>
+								<%= check_box_tag "purpose_#{purpose.id}".to_sym, purpose.id,
+								 {checkbox: false}, style: "display: none;" %>
+								<%= label_tag "purpose_#{purpose.id}".to_sym, purpose.name,
+								 class: "purpose_tag" %>
+							</li>
+						<% end %>
+					</ul>
+
+					<!-- 対象階級 -->
+					<p class="tags-label">対象階級</p>
+					<ul class="tags clearfix">
+						<% ranks.each do |rank|  %>
+							<li>
+								<%= check_box_tag "rank_#{rank.id}".to_sym, rank.id, checkbox = false, style: "display: none;" %>
+								<%= label_tag "rank_#{rank.id}".to_sym, rank.name, class: "rank_tag" %>
+							</li>
+						<% end %>
+					</ul>
+
+					<ul class="details-table details-form">
+						<!-- ジャンル -->
+						<%= detail_list("ジャンル",
+								text_field_tag(:sports_name, "",
+															 class: "board-form-text",
+															 placeholder: "例）テニス、野球、サッカー")) %>
+						<!-- 応募資格 -->
+						<%= detail_list("応募資格",
+								f.text_field(:qualification,
+														class: "board-form-text",
+														placeholder: "例）誰でも歓迎!!")) %>
+						<!-- 県 -->
+						<%= detail_list("県",
+								f.collection_select(:area_id, areas, :id, :name)) %>
+						<!-- 市区町村 -->
+						<%= detail_list("市区町村",
+								f.text_field(:city,
+														 class: "board-form-text",
+														 placeholder: "例）中野区、世田谷区")) %>
+						<!-- 場所 -->
+						<%= detail_list("場所",
+								f.text_field(:place,
+														 class: "board-form-text",
+														 placeholder: "例）OOスポーツセンター")) %>
+						<!-- 日時 -->
+						<%= detail_list("日時",
+								f.text_field(:do_date,
+														 class: "board-form-text",
+														 placeholder: "例）1月２１日　18:00 ~ 20:00")) %>
+						<!-- 人数 -->
+						<%= detail_list("人数",
+								f.text_field(:max_people, class: "board-form-people")) %>
+						<!-- 締切日 -->
+						<%= detail_list("締切日",
+								f.text_field(:closing_date,
+														 class: "board-form-date",
+														 value:  Date.today,
+														 placeholder: "例）#{Date.today}")) %>
+						<!-- コミュニティ名 -->
+						<%= detail_list"コミュニティ名", "新規コミュニティ" if board.community_id %>
+						<!-- 作成者 -->
+						<%= detail_list("作成者", current_user.name) %>
+					</ul>
+					<!-- 募集紹介ぶん -->
+					<%= f.text_area :introduction, class: "board-form-textarea" %>
+				</div>
+
+				<div class="col-md-offset-4 col-md-4">
+					<%= f.hidden_field :manager_user_id, value: current_user.id %>
+					<%= f.submit "募集する!", class: "board-submit" %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+
+<script>
+ 	changeBgColor("purpose_tag")
+ 	changeBgColor("rank_tag")
+</script>
+

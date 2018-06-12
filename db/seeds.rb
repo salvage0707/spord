@@ -6,6 +6,20 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+
+# 生成メッセージ
+def error_message(object, message)
+	if object.errors.any?
+		object.errors.full_messages.each do |msg|
+			p msg
+		end
+		puts "#{message}生成に失敗しました"
+	else
+		puts "#{message}は生成されました"
+	end
+end
+
+
 # 管理者
 Admin.create(name: "管理者",
 						 email: "admin@example.com",
@@ -72,6 +86,11 @@ purposes.each do |p|
 	Purpose.create(name: p)
 end
 
+# 階級
+ranks = %W(経験なし 初心者 中級者 上級者 プロ級)
+ranks.each do |r|
+	Rank.create(name: r)
+end
 
 
 
@@ -87,43 +106,46 @@ end
 
 5.times do |n|
 	gimei = Gimei.name
-	address = Gimei.address
-	user = User.create(name: gimei.kanji,
+	object = User.create(name: gimei.kanji,
 							nickname: Faker::Name.name,
 							email:  Faker::Internet.email,
 							age: rand(14..70),
 							area_id: rand(10..30),
-							city: address.city.kanji,
+							city: "杉並区",
 							sex: true,
 							introduction: "テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介",
 							password: "password",
 							)
+	# 確認用
+	error_message(object, "User(男性)") if n == 4
+
 end
 
 5.times do |n|
 	gimei = Gimei.name
-	address = Gimei.address
-	user = User.create(name: gimei.kanji,
+	object = User.create(name: gimei.kanji,
 							nickname: Faker::Name.name,
 							email:  Faker::Internet.email,
 							age: rand(14..70),
 							area_id: rand(10..30),
-							city: address.city.kanji,
+							city: "杉並区",
 							sex: false,
 							introduction: "テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介",
 							password: "password",
 							)
+
+	# 確認用
+	error_message(object, "User(女性)") if n == 4
 end
 
 # 単発募集
 boards = %W(テスト単発募集1 テスト単発募集2)
 boards.each do |b|
-	address = Gimei.address
-	Board.create(name: b,
+	object = Board.create(name: b,
 							 sport_id: rand(1..sports.length),
 							 do_date: Date.today,
 							 area_id: rand(10..20),
-							 city: address,
+							 city: "杉並区",
 							 qualification: "初心者歓迎",
 							 place: "大和スポーツセンター",
 							 closing_date: Date.today.next_month,
@@ -132,17 +154,18 @@ boards.each do |b|
 							 manager_user_id: rand(1..10),
 							 community_id: nil,
 							 )
+	# 確認用
+	error_message(object, "board(単発)") if object.name == boards.last
 end
 
 # コミュニティ関連
 boards = %W(テスト募集1 テスト募集2)
 boards.each do |b|
-	address = Gimei.address
-	Board.create(name: b,
+	object = Board.create(name: b,
 							 sport_id: rand(1..sports.length),
 							 do_date: Date.today,
 							 area_id: rand(10..20),
-							 city: address,
+							 city: "杉並区",
 							 qualification: "初心者歓迎",
 							 place: "大和スポーツセンター",
 							 closing_date: Date.today.next_month,
@@ -151,6 +174,8 @@ boards.each do |b|
 							 manager_user_id: rand(1..10),
 							 community_id: 1,
 							 )
+	# 確認用
+	error_message(object, "board(コミュニティ)") if object.name == boards.last
 end
 
 
@@ -158,7 +183,7 @@ end
 # コミュニティー
 communities = %W(テストコミュニティー1 テストコミュニティー2)
 communities.each do |c|
-	Community.create(name: c,
+	object = Community.create(name: c,
 									 sport_id: 1,
 									 active_date: "毎週土曜日に開催してます！",
 									 place: "大和スポーツセンター",
@@ -169,6 +194,9 @@ communities.each do |c|
 									 introduction: "テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介テスト紹介",
 									 manager_user_id: 1,
 									 )
+
+	# 確認用
+	error_message(object, "community") if object.name == communities.last
 end
 
 

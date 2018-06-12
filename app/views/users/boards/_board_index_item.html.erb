@@ -11,11 +11,16 @@
 				<!-- 募集内容詳細 -->
 					<div class="item-content clearfix">
 					<!-- 画像 -->
-						<%= image_tag "sports02.jpg" %>
+						<%= link_to board_path(board.id) do %>
+							<%= image_tag "sports02.jpg" %>
+						<% end %>
 
 						<!-- 詳細情報 -->
 						<div class="details">
-							<h4>みんなで遊ぼう！</h4>
+							<!-- 募集タイトル -->
+							<%= link_to board_path(board.id) do %>
+								<h4><%= board.name %></h4>
+							<% end %>
 
 								<ul class="tags clearfix">
 									<li>初心者</li>

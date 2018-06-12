@@ -1,0 +1,13 @@
+<div class="request-board-user">
+	<div class="container">
+		<div class="row">
+			<div class="item col-md-offset-4 col-md-4">
+				<h3>募集名</h3>
+
+				<%= form_for @recest do %>
+					<%= f.text_area :comment, class: 'comment-form' %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>

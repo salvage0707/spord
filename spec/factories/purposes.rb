@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :purpose do
-    name "MyString"
+    name "みんなで楽しく!"
   end
 end

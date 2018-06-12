@@ -57,7 +57,15 @@
 	}
 }
 
+
+
 // タグ
+.tags-label {
+	font-size: 20px;
+	// background-color: #b0c4de;
+	border-bottom: 1px solid #000;
+	display: inline-block;
+}
 .tags {
 		display: block;
 	li {
@@ -66,6 +74,7 @@
 		float: left;
 		padding: 5px;
 		margin-right: 10px;
+		margin-bottom: 5px;
 		display: inline-block;
 		background-color: #ccc;
 		border: 1px solid #a9a9a9;
@@ -102,10 +111,10 @@
 .details-text {
 	border: 2px solid #ccc;
 	border-radius: 5px;
-	padding-top: 10px;
-	padding-bottom: 10px;
+	margin-top: 20px;
 	height: 100%;
 	p {
+		padding: 10px;
 		font-size: 17px;
 	}
 }
@@ -116,6 +125,12 @@
 
 	.container {
 		margin-top: 80px;
+		margin-bottom: 80px;
+	}
+	.edit-btn {
+		font-size: 19px;
+		float: right;
+		text-decoration: none;
 	}
 	h4 {
 		margin-top: 20px;
@@ -142,10 +157,102 @@
 			font-size: 16px;
 		}
 	}
-	.details-text {
+}
+
+// 申請とグラフの箱
+.charts-recests {
+	margin-top: 50px;
+}
+
+// 申請などの一覧
+.requests {
+
+	.item-box {
+		width: 100%;
+		border: 2px solid #ccc;
+		background-color: #00ff00;
+		padding: 10px;
+
+		.item {
+			width: 60%;
+			height: 50px;
+			padding: 5px;
+			margin: 0 20% 10px;
+			background-color: #1e90ff;
+			border-radius: 5px;
+			display: inline-block;
+			text-align: center;
+		}
+		a{
+			font-size: 25px;
+			color: black;
+		}
+	}
+}
+
+// new
+// 新規募集投稿
+
+.form-title {
+	font-size: 40px;
+	margin: 30px;
+}
+// 同じcss
+%board-form {
+	outline: none;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: 5px;
+  margin-bottom: 4px;
+  &:focus {
+		box-shadow: 0 0 7px #1abc9c;
+		border: 1px solid #1abc9c;
+  }
+}
+// タイトルフォーム
+.board-form-title {
+	width: 100%;
+	@extend %board-form;
+}
+// テキスト系フォーム
+.board-form-text, .board-form-textarea {
+	width: 100%;
+	height: 26px;
+	@extend %board-form;
+}
+// テキストエリアのフォーム
+.board-form-textarea {
+	margin-top: 20px;
+	height: 200px;
+}
+// 締切日のフォーム
+.board-form-date {
+	width: 40%;
+	height: 26px;
+	@extend %board-form;
+}
+// 人数設定のフォーム
+.board-form-people {
+	width: 20%;
+	height: 26px;
+	@extend %board-form;
+}
+
+.details-form {
+	li {
 		margin-top: 20px;
 	}
 }
+
+.board-submit {
+	width: 100%;
+	height: 80px;
+	border-radius: 5px;
+	background-color: #1e90ff;
+	font-size: 35px;
+	margin: 30px;
+}
+
 
 
 

@@ -3,9 +3,9 @@ class CreateCommunityUsers < ActiveRecord::Migration[5.2]
     create_table :community_users do |t|
       t.integer :user_id
       t.integer :community_id
-      t.integer :permission
+      t.integer :permission, default:0
       t.string :comment
-      t.boolean :approval
+      t.boolean :approval, default: false
 
       t.timestamps
     end

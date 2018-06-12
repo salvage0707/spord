@@ -3,7 +3,7 @@ class CreateBoards < ActiveRecord::Migration[5.2]
     create_table :boards do |t|
       t.string :name
       t.integer :sport_id
-      t.date :do_date
+      t.string :do_date
       t.integer :area_id
       t.string :city
       t.date :closing_date

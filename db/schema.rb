@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_04_103853) do
+ActiveRecord::Schema.define(version: 2018_06_08_091205) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -47,12 +47,21 @@ ActiveRecord::Schema.define(version: 2018_06_04_103853) do
     t.index ["purpose_id"], name: "index_board_purposes_on_purpose_id"
   end
 
+  create_table "board_ranks", force: :cascade do |t|
+    t.integer "board_id"
+    t.integer "rank_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["board_id"], name: "index_board_ranks_on_board_id"
+    t.index ["rank_id"], name: "index_board_ranks_on_rank_id"
+  end
+
   create_table "board_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "board_id"
-    t.boolean "approval"
+    t.boolean "approval", default: false
     t.string "comment"
-    t.integer "permission"
+    t.integer "permission", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["board_id"], name: "index_board_users_on_board_id"
@@ -62,7 +71,7 @@ ActiveRecord::Schema.define(version: 2018_06_04_103853) do
   create_table "boards", force: :cascade do |t|
     t.string "name"
     t.integer "sport_id"
-    t.date "do_date"
+    t.string "do_date"
     t.integer "area_id"
     t.string "city"
     t.date "closing_date"
@@ -113,12 +122,21 @@ ActiveRecord::Schema.define(version: 2018_06_04_103853) do
     t.index ["purpose_id"], name: "index_community_purposes_on_purpose_id"
   end
 
+  create_table "community_ranks", force: :cascade do |t|
+    t.integer "community_id"
+    t.integer "rank_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["community_id"], name: "index_community_ranks_on_community_id"
+    t.index ["rank_id"], name: "index_community_ranks_on_rank_id"
+  end
+
   create_table "community_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "community_id"
-    t.integer "permission"
+    t.integer "permission", default: 0
     t.string "comment"
-    t.boolean "approval"
+    t.boolean "approval", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["community_id"], name: "index_community_users_on_community_id"
@@ -129,7 +147,7 @@ ActiveRecord::Schema.define(version: 2018_06_04_103853) do
     t.integer "board_id"
     t.integer "user_id"
     t.string "message"
-    t.boolean "read"
+    t.boolean "read", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["board_id"], name: "index_msg_to_boards_on_board_id"
@@ -140,7 +158,7 @@ ActiveRecord::Schema.define(version: 2018_06_04_103853) do
     t.integer "community_id"
     t.integer "user_id"
     t.string "message"
-    t.boolean "read"
+    t.boolean "read", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["community_id"], name: "index_msg_to_communities_on_community_id"
@@ -151,7 +169,7 @@ ActiveRecord::Schema.define(version: 2018_06_04_103853) do
     t.integer "to_user_id"
     t.integer "user_id"
     t.string "message"
-    t.boolean "read"
+    t.boolean "read", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["read"], name: "index_msg_to_users_on_read"
@@ -173,6 +191,12 @@ ActiveRecord::Schema.define(version: 2018_06_04_103853) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["name"], name: "index_purposes_on_name"
+  end
+
+  create_table "ranks", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "regions", force: :cascade do |t|

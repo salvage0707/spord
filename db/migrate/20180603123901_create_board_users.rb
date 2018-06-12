@@ -3,9 +3,9 @@ class CreateBoardUsers < ActiveRecord::Migration[5.2]
     create_table :board_users do |t|
       t.integer :user_id
       t.integer :board_id
-      t.boolean :approval
+      t.boolean :approval, default: false
       t.string :comment
-      t.integer :permission
+      t.integer :permission, default: 0
 
       t.timestamps
     end

@@ -1,0 +1,2 @@
+module Users::BoardUsersHelper
+end

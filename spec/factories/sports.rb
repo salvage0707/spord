@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :sport do
-    name "MyString"
+    name "テニス"
     big_image_id "MyString"
     small_image_id "MyString"
-    introduction "MyString"
+    introduction "テニスです"
   end
 end
