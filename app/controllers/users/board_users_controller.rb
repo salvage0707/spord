@@ -1,5 +1,6 @@
 class Users::BoardUsersController < ApplicationController
 	before_action :set_board
+  before_action :set_user
   def show
   end
 
@@ -7,25 +8,30 @@ class Users::BoardUsersController < ApplicationController
   end
 
   def new
-  	user = User.find(current_user.id)
-  	@recest = user.board_users.build
-  	# 申請済みだった場合にリダイレクト
-  	redirect_to if user.board_users.find_by(board_id: @board.id)
+    # 申請済みだった場合にリダイレクト
+    if @user.board_users.find_by(board_id: @board.id)
+      redirect_to edit_board_board_users_path(@board.id) and return
+    end
+  	@request = @user.board_users.build
   end
 
   def create
-  	#   	user = User.find(current_user.id)
-  	# # 申請済みだった場合にリダイレクト
-  	# redirect_to if user.board_users.find_by(board_id: @board.id)
-  	# 	recest = user.board_users.build()
-  	# 	if recest.save
-  	# 		redirect_to board_path(@board.id)
-  	# 	else
-  	# 		render :new
-  	# 	end
+		@request = @user.board_users.build(board_user_params)
+    # 保存の確認
+		if @request.save
+			redirect_to board_path(@board.id) and return
+		else
+			render :new
+		end
   end
 
   def edit
+    # 募集にリクエストが通っているか確認
+    @request = @user.board_users.find_by(board_id: @board.id)
+    if @request.approval == false
+    else
+      redirect_to board_path(@board.id)
+    end
   end
 
   def update
@@ -43,10 +49,16 @@ class Users::BoardUsersController < ApplicationController
   		if @board = Board.find_by(id: params[:board_id])
   		else
   			redirect_to boards_path
+        return
   		end
   	end
+
+      def set_user
+    @user = User.find_by(id: current_user.id)
+  end
 
   	def board_user_params
   		params.require(:board_user).permit(:comment).merge(board_id: @board.id)
   	end
+
 end

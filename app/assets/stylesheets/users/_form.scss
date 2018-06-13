@@ -1,0 +1,14 @@
+
+
+// 同じcss
+%form {
+	outline: none;
+  border: 1px solid #aaa;
+  border-radius: 3px;
+  padding: 5px;
+  margin-bottom: 4px;
+  &:focus {
+		box-shadow: 0 0 7px #1abc9c;
+		border: 1px solid #1abc9c;
+  }
+}

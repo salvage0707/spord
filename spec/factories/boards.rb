@@ -14,8 +14,9 @@ FactoryBot.define do
     area
     association :manager_user, factory: :manager_user
     after(:build) do |board|
-        board.users << FactoryBot.build(:man)
-        board.users << FactoryBot.build(:woman)
+        # なぜか使えない
+        # board.users << FactoryBot.build(:man)
+        # board.users << FactoryBot.build(:woman)
 
         board.ranks << FactoryBot.build_list(:rank, 5)
     end

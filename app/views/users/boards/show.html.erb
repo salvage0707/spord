@@ -64,7 +64,7 @@
 						<%  %>
 							<%= link_to "参加申請", new_board_board_users_path(board_id: @board.id), class: "item" %>
 						<%  %>
-							<%= link_to "申請取り消し", "#", class: "item" %>
+							<%= link_to "申請取り消し", edit_board_board_users_path(board_id: @board.id), class: "item" %>
 						<%  %>
 							<%= link_to "募集から抜ける", "#",  class: "item" %>
 						<%  %>

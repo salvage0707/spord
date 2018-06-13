@@ -4,6 +4,9 @@ RSpec.describe Users::BoardUsersController, type: :controller do
   let(:user) { create(:user) }
   # let(:boards) { create_list(:board, 6) }
   let(:board) { create(:board) }
+  let(:board_user) { create(:board_user,
+                             user_id: user.id,
+                             board_id: board.id)}
   # let(:areas) { create_list(:area, 47) }
   # let(:area) { create(:area) }
   # let(:ranks) { create_list(:rank, 4) }
@@ -20,9 +23,19 @@ RSpec.describe Users::BoardUsersController, type: :controller do
   # 正しいパラメータ
   let(:params) do
     {params: {
-        board_id: board_id,
+        board_id: board.id,
         board_user: {
           comment: "コメント"
+        }
+      }
+    }
+  end
+  # 正しくないパラメータ
+  let(:not_params) do
+    {params: {
+        board_id: board.id,
+        board_user: {
+          comment: ""
         }
       }
     }
@@ -63,21 +76,20 @@ RSpec.describe Users::BoardUsersController, type: :controller do
         expect(response).to render_template :new
       end
 
-      it "@recestにBoardUser.newが入っているか" do
-        expect(assigns :recest).to be_a_new(BoardUser)
+      it "@requestにBoardUser.newが入っているか" do
+        expect(assigns :request).to be_a_new(BoardUser)
       end
-      it "@recestにログインユーザーのidが入っているか" do
-        expect(assigns(:recest).user_id).to eq user.id
+      it "@requestにログインユーザーのidが入っているか" do
+        expect(assigns(:request).user_id).to eq user.id
       end
     end
 
     context "ログインユーザーが申請していた場合" do
       it "意図したビューにリダイレクトできてるか" do
-        pending "治らず保留中"
         login_user user
-        create(:board_user)
+        board_user
         get :new, board_id
-        expect(response).to redirect_to board_path(board.id)
+        expect(response).to redirect_to edit_board_board_users_path(board.id)
       end
     end
 
@@ -89,36 +101,69 @@ RSpec.describe Users::BoardUsersController, type: :controller do
     end
   end
 
-  # -----------------------------------------------------------
+# -----------------------------------------------------------
 # createアクション
 # -----------------------------------------------------------
-  # describe "GET #create" do
+  describe "GET #create" do
+    before do
+      login_user user
+      board
+    end
 
-  #   context "ログインユーザーが参加していない場合" do
-  #     context "保存に成功した場合" do
-  #       it "データベースに保存できたか" do
-  #       end
-  #       it "意図したビューにリダイレクトできてるか" do
-  #       end
-  #       it ""
-  #     end
+    context "保存に成功した場合" do
+      it "データベースに保存できたか" do
+        expect{ post :create, params }.to change(BoardUser, :count).by(1)
+      end
+      it "意図したビューにリダイレクトできてるか" do
+        post :create, params
+        expect(response).to redirect_to board_path(board.id)
+      end
+    end
 
-  #     context "保存に失敗した場合" do
-  #     end
-  #   end
-  # end
+    context "保存に失敗した場合" do
+      it "データベースに保存されていないか" do
+        expect{ post :create, not_params }.to change(BoardUser, :count).by(0)
+      end
+      it "該当するビューが描画されているか" do
+        post :create, not_params
+        expect(response).to render_template :new
+      end
+    end
+  end
 
 
 
 # -----------------------------------------------------------
-# newアクション
+# editアクション
 # -----------------------------------------------------------
-  # describe "GET #edit" do
-  #   it "returns http success" do
-  #     get :edit
-  #     expect(response).to have_http_status(:success)
-  #   end
-  # end
+  describe "GET #edit" do
+    context "リクエストが通っていない場合" do
+      before do
+        login_user user
+        board_user
+        get :edit, board_id
+      end
+      it "該当のビューが描画されているか" do
+        expect(response).to render_template :edit
+      end
+      it "@requestに指定の値が入っているか" do
+        expect(assigns :request).to eq BoardUser.find_by(user_id: user.id,
+                                                         board_id: board.id)
+      end
+    end
+
+    context "リクエストが通っている場合" do
+      before do
+        login_user user
+        board_user.approval = true
+        board_user.save
+        get :edit, board_id
+      end
+      it "意図したビューにリダイレクトできてるか" do
+        expect(response).to redirect_to board_path(board.id)
+      end
+    end
+  end
 
 
 end
