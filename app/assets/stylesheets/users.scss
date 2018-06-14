@@ -1,3 +1,97 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import "users/form";
+
+
+.user-mypage {
+	margin-top: 20px;
+	margin-bottom: 100px;
+
+	// フラッシュメッセージ
+	.flash-message {
+		font-size: 30px;
+	}
+	// フォローの情報
+	.relationship-text {
+		font-size: 30px;
+	}
+	.item {
+			font-size: 15px;
+			display: block;
+			text-align: center;
+	}
+
+	// プロフィール画像
+	img.user{
+		width: 60%;
+		margin: 0 20%;
+		border-radius: 50%;
+	}
+
+	.details-table li { //ulの設定
+		margin-top: 10px;
+
+		// 左画面
+		p {
+			font-size: 16px;
+		}
+		p:first-child {
+			font-weight: bold;
+			font-size: 16px;
+		}
+		.user-introduction{
+			width: 100%;
+		}
+
+		.history {
+			margin-top: 10px;
+			.sports-name {
+				width: 50%;
+			}
+			.sports-years {
+				width: 20%;
+			}
+			.rank {
+				width: 20%;
+			}
+
+			.purpose {
+				.item {
+					@extend %tag-info;
+				}
+			}
+		}
+	}
+	// 右側
+	.communities, .boards {
+		margin-bottom: 30px;
+		h4 {
+			font-size: 30px;
+			padding-left: 50px;
+			display: block;
+			background-color: #000000;
+			color: white;
+		}
+
+		.item {
+			height: 200px;
+			border: 2px solid #ccc;
+			padding: 20px;
+			margin-top: 40px;
+			text-align: left;
+
+			img.community {
+				width: 100%;
+			}
+
+			h5 {
+				font-size: 20px;
+			}
+			.introduction, .do-date, .place, .people {
+				margin-top: 10px;
+				font-size: 15px;
+			}
+		}
+	}
+}

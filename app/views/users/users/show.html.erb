@@ -1,2 +1,97 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="user-mypage">
+	<div class="container">
+		<div class="row">
+			<p class="flash-message"></p>
+			<!-- 左側 -->
+			<div class="col-md-5">
+				<p class="relationship-text">
+					23 フォロー　｜　13 フォロワー
+				</p>
+
+				<%  %>
+					<%= link_to 'フォロー', "#", class: "item" %>
+				<%  %>
+					<%= link_to 'フォロー解除', "#", class: "item" %>
+				<%  %>
+
+				<%  %>
+					<%= link_to 'メッセージ', "#", class: "item" %>
+				<%  %>
+
+				<%= user_image_tag @this_user, class: "user" %>
+
+				<div class="profile-list">
+					<ul class="details-table">
+						<!-- ニックネーム -->
+						<%= detail_list("ニックネーム", @this_user.nickname) %>
+						<!-- 本名 -->
+						<% if @this_user.name[0] == '#'%>
+							<%= detail_list("名前", "非表示") %>
+						<% else %>
+							<%= detail_list("名前", @this_user.full_name) %>
+						<% end %>
+						<!-- 年代 -->
+						<%= detail_list("年代", @this_user.generation.to_s + "代") %>
+						<!-- 地域 -->
+						<%= detail_list("地域", @this_user.area.name + "  " + @this_user.city) %>
+						<!-- 性別 -->
+						<%= detail_list("性別", @this_user.what_sex) %>
+						<!-- スポーツれき -->
+						<%= detail_list("スポーツ歴") do %>
+							<div class="history">
+							<% @this_user.my_sports.each do |my_sport| %>
+								<!-- スポーツ名 -->
+								<p class="sports-name">
+									<%= my_sport.sport.name %>
+								</p>
+								<!-- 歴 -->
+								<p class="sports-years">
+									<%= my_sport.how_long %>
+								</p>
+								<p class="rank">
+									<%= my_sport.rank.name %>
+								</p>
+								<% end %>
+							</div>
+						<% end %>
+						<!-- 目的 -->
+						<%= detail_list("目的") do %>
+							<div class="purpose">
+								<% @this_user.purposes.each do |purpose| %>
+									<p class="item">
+										<%= purpose.name %>
+									</p>
+									<% end %>
+							</div>
+						<% end %>
+						<!-- 自己紹介 -->
+						<%= detail_list("自己紹介") do %>
+								<p class="user-introduction">
+									<%= @this_user.introduction %>
+								</p>
+						<% end %>
+					</ul>
+				</div>
+			</div> <!-- 左側-->
+
+			<!-- 右側 -->
+			<div class="col-md-7">
+			<!-- コミュニティ -->
+				<div class="communities">
+					<%= render 'users/users/community_mini_index', communities: @communities %>
+				</div><!-- コミュニティ -->
+				<!-- 募集 -->
+				<div class="boards">
+					<%= render 'users/users/board_mini_index', boards: @boards %>
+				</div><!-- 募集 -->
+			</div><!-- 右側 -->
+		</div>
+	</div>
+</div>
+
+
+<script>
+	// 高さと横幅を同じに
+	sameHeight('.user')
+	// sameHeight('.community')
+</script>

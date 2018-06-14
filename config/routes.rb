@@ -1,10 +1,6 @@
 Rails.application.routes.draw do
 
-  namespace :users do
-    get 'board_users/show'
-    get 'board_users/index'
-    get 'board_users/edit'
-  end
+
   root 'users/boards#index'
 
 
@@ -16,7 +12,12 @@ Rails.application.routes.draw do
 		}
     resources :users, only: [:show, :index, :destroy]
     resources :boards, only: [:show, :index, :new, :edit, :destroy, :create] do
-      resource :board_users
+      resources :board_users
+      # 申請拒否
+      patch 'board_users/:id/reject' => 'board_users#reject', as: "board_reject"
+      get 'board_users/board_users/rejects' => 'board_users#reject_index', as: "board_rejects"
+      patch 'board_users/:id/admit' => 'board_users#admit', as: "board_admit"
+      get 'board_users/board_users/admits' => 'board_users#admit_index', as: "board_admits"
     end
     resources :communities, only: [:show, :index, :new, :edit, :destroy]
   end

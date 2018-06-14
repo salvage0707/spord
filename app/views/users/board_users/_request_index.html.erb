@@ -1,0 +1,25 @@
+<!-- 使用変数 requests: Requestの情報, board: 指定のBoard, title_name:表示タイトル -->
+<div class="request-board-user board-users-index">
+	<div class="container">
+		<div class="row">
+		<div class="clearfix">
+			<%= link_to "戻る", board_path(board.id), class: "path" %>
+		</div>
+		<h3><%= title_name %></h3>
+			<% requests.each do |request| %>
+				<div class="item col-md-offset-3 col-md-6">
+					<h4><%= request.user.name %></h4>
+
+						<p class="comment-form">
+							<%= request.comment %>
+						</p>
+
+						<!-- 参加許可 -->
+						<%= link_to '許可', board_board_admit_path(board_id: board.id, id: request.id), method: :patch, class: "admit-btn" %>
+						<!-- 参加拒否 -->
+						<%= link_to '拒否', board_board_reject_path(board_id: board.id, id: request.id), method: :patch, class: "reject-btn" %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>

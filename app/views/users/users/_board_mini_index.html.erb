@@ -1,0 +1,35 @@
+<!-- 使用変数 boards: baordの情報 -->
+<h4>
+	My Boards
+</h4>
+
+<% boards.each do |board| %>
+	<div class="item">
+		<div class="row">
+			<div class="col-md-5">
+				<%= link_to board_path(board.id) do %>
+					<%= image_tag "sports02.jpg", class: "community" %>
+				<% end %>
+			</div>
+			<div class="col-md-7">
+				<!-- 募集名 -->
+				<%= link_to board_path(board.id) do %><!-- あとでつける -->
+					<h5><%= board.name %></h5>
+				<% end %>
+				<!-- 日時 -->
+				<p class="do-date">
+					<%= board.do_date %>
+				</p>
+				<!-- 場所 -->
+				<p class="place">
+					<%= board.place %>
+				</p>
+				<!-- 現在人数 -->
+				<p class="people">
+					<%= "#{board.board_users.count}  /  #{board.max_people}" %>
+				</p>
+
+			</div>
+		</div>
+	</div>
+<% end %>

@@ -1,0 +1,25 @@
+<!-- 使用変数　communities: communityの情報 -->
+<h4>
+	My Communities
+</h4>
+<% communities.each do |community| %>
+	<div class="item">
+		<div class="row">
+			<div class="col-md-5">
+				<%= link_to board_path(community.id) do %>
+					<%= image_tag "sports02.jpg", class: "community" %>
+				<% end %>
+			</div>
+			<div class="col-md-7">
+				<!-- コミュニティ名 -->
+				<%= link_to board_path(community.id) do %>
+					<h5>テストコミュニティ</h5>
+				<% end %>
+				<!-- コミュニティ紹介 -->
+				<p class="introduction">
+					<%= community.introduction %>
+				</p>
+			</div>
+		</div>
+	</div>
+	<% end %>

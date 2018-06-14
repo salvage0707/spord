@@ -1,16 +1,32 @@
-// Place all the styles related to the Users::board_users controller here.
+// Place all the styles related to the Users::board-users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import "users/form";
 
 .request-board-user {
+
+	.container {
+		margin-top: 105px;
+		margin-bottom: 105px;
+	}
+	.path {
+		// width: 70px;
+		margin: 10px 30% ;
+		font-size: 20px;
+		background-color: #00bfff;
+		color: #000;
+		border-radius: 5px;
+		padding: 10px;
+		float: left;
+	}
 	.item {
 		border: 2px solid #ccc;
-		margin-top: 125px;
+		margin-top: 20px;
+		margin-bottom: 20px;
 		padding: 30px;
 
-		h3 {
+		h4 {
 			font-size: 30px;
 		}
 		// テキストフォーム
@@ -21,8 +37,8 @@
 			height: 150px;
 			@extend %form;
 		}
-		// 送信ボタン
-		.submit-btn {
+		// 送信ボタン, 削除ボタン
+		.submit-btn, .delete-btn {
 			width: 30%;
 			float: right;
 			margin-top: 19px;
@@ -31,5 +47,43 @@
 			border-radius: 4px;
 			background-color: #00bfff;
 		}
+		// 削除ボタンに追加
+		.delete-btn {
+			font-size: 15px;
+			text-align: center;
+			color: inherit;
+			background-color: #cd5c5c;
+			margin-left: 10px;
+		}
 	}
 }
+
+
+
+.board-users-index {
+	h3 {
+		font-size: 60px;
+		text-align: center;
+		display: block;
+		margin-bottom: 30px;
+	}
+	.admit-btn, .reject-btn {
+	font-size: 15px;
+	text-align: center;
+	color: inherit;
+	width: 30%;
+	float: left;
+	margin-top: 19px;
+	padding: 10px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #00bfff
+}
+.reject-btn {
+	float: right;
+	background-color: #cd5c5c;
+}
+}
+
+
+

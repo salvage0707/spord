@@ -1,0 +1,90 @@
+<div class="user-mypage">
+	<div class="container">
+		<div class="row">
+			<p class="flash-message"></p>
+			<!-- 左側 -->
+			<div class="col-md-5">
+				<p class="relationship-text">
+					23 フォロー　｜　13 フォロワー
+				</p>
+
+				<%  %>
+					<%= link_to 'フォロー', "#", class: "item" %>
+				<%  %>
+					<%= link_to 'フォロー解除', "#", class: "item" %>
+				<%  %>
+
+				<%  %>
+					<%= link_to 'メッセージ', "#", class: "item" %>
+				<%  %>
+
+				<%= user_image_tag @user %>
+
+				<div class="profile-list">
+					<ul class="details-table">
+						<!-- ニックネーム -->
+						<%= detail_list("ニックネーム", @user.nickname) %>
+						<!-- 本名 -->
+						<%= detail_list("名前", @user.name) %>
+						<!-- 年代 -->
+						<%= detail_list("年代", @user.generation.to_s + "代") %>
+						<!-- 地域 -->
+						<%= detail_list("地域", @user.area.name + "  " + @user.city) %>
+						<!-- 性別 -->
+						<%= detail_list("性別", @user.what_sex) %>
+						<!-- スポーツれき -->
+						<%= detail_list("スポーツ歴") do %>
+							<div class="purpose-item">
+								<!-- スポーツ名 -->
+								<p class="sports-name">
+									テニス
+								</p>
+								<!-- 歴 -->
+								<p class="sports-years">
+									13年
+								</p>
+								<p class="rank">
+									プロ級
+								</p>
+							</div>
+						<% end %>
+					</ul>
+				</div>
+			</div> <!-- 左側-->
+
+			<!-- 右側 -->
+			<div class="col-md-7">
+				<div class="communities">
+					<h4>
+						My Communities
+					</h4>
+
+					<div class="item">
+						<div class="row">
+							<div class="col-md-7">
+								<!-- コミュニティ名 -->
+								<h5>テストコミュニティ</h5>
+								<!-- コミュニティ紹介 -->
+								<p class="introduction">ctefghjfkgfnbdghjfkgnbghfkgmn</p>
+							</div>
+							<div class="col-md-5">
+								
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="boards">
+				<h4>
+					My Boards
+				</h4>
+				</div>
+			</div><!-- 右側 -->
+		</div>
+	</div>
+</div>
+
+
+<script>
+// 高さと横幅を同じに
+	sameHeight('img')
+</script>

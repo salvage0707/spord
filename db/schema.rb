@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(version: 2018_06_08_091205) do
   create_table "board_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "board_id"
-    t.boolean "approval", default: false
+    t.boolean "approval"
     t.string "comment"
     t.integer "permission", default: 0
     t.datetime "created_at", null: false

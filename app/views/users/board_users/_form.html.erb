@@ -8,10 +8,13 @@
 				<%= form_for request, url: board_board_users_path do |f| %>
 					<%= f.text_area :comment, class: 'comment-form' %>
 
-					<%= f.submit "#{btn_name}", class: "submit-btn" %>
 					<!-- 編集画面のみに表示 -->
-					<% if controller.action_name == "edit" %>
+					<% action = controller.action_name %>
+					<% if action == "edit" || action == "update" %>
+						<%= link_to '削除', board_board_users_path, method: :delete, class: "delete-btn" %>
 					<% end %>
+
+					<%= f.submit "#{btn_name}", class: "submit-btn" %>
 				<% end %>
 			</div>
 		</div>

@@ -1,10 +1,14 @@
 class Users::BoardsController < ApplicationController
   before_action :set_info, only: [:new, :edit, :create, :update]
+  before_action :set_user, only: [:show]
+  before_action :set_board, only: [:show, :edit]
+
+
   def show
-  	if @board = Board.find_by(id: params[:id])
-  	else
-  		redirect_to boards_path
-  	end
+    # ユーザーがログインしている場合のみ
+    if user_signed_in?
+      @request = @user.board_users.find_by(board_id: @board.id)
+    end
   end
 
   def index
@@ -12,10 +16,6 @@ class Users::BoardsController < ApplicationController
   end
 
   def edit
-    if @board = Board.find_by(id: params[:id])
-    else
-      redirect_to boards_path
-    end
   end
 
   def new

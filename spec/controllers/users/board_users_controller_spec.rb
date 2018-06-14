@@ -165,5 +165,26 @@ RSpec.describe Users::BoardUsersController, type: :controller do
     end
   end
 
+# -----------------------------------------------------------
+# updateアクション
+# -----------------------------------------------------------
+  describe "PATCH #update" do
+    context "保存に成功した場合" do
+      it "指定のモデルが変数に入っているか" do
+      end
+      it "変更てんが変わっているか" do
+      end
+      it "意図したビューにリダイレクトできてるか" do
+      end
+    end
+
+    context "保存に失敗した場合" do
+      it "変更されていないか" do
+      end
+      it "該当のビューが描画されているか" do
+      end
+    end
+  end
+
 
 end

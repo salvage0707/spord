@@ -27,11 +27,15 @@
 		<!-- 右 -->
 		<div class="col-md-3 right-box">
 			<% if user_signed_in? %>
-				<%= current_user.name %>
-			<% else %>
-					<%= link_to "ログイン", new_user_session_path  %>
+				<%= link_to user_path(current_user.id) do %>
+					<%= current_user.full_name %>
 					<span> | </span>
-					<%= link_to "新規登録", new_user_registration_path  %>
+					<%= link_to "ログアウト", destroy_user_session_path, method: :delete  %>
+				<% end %>
+			<% else %>
+				<%= link_to "ログイン", new_user_session_path  %>
+				<span> | </span>
+				<%= link_to "新規登録", new_user_registration_path  %>
 			<% end %>
 		</div>
 	</div>
