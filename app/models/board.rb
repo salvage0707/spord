@@ -24,4 +24,40 @@ class Board < ApplicationRecord
 	validates :place, presence: true, length: { in: 2..100 }
 
 
+	# 関連づいたpurposeの作成、削除
+	def make_purpose(params)
+		# 現在設定中のpurposeのidを配列にする
+		setting_purposes = []
+		self.purposes.each{|k| setting_purposes << k.id}
+		# 設定中の場合は作成
+		params.select{|k, _| k.match(/purpose_/)}.each do |_, val|
+			unless setting_purposes.include?(val)
+     		self.board_purposes.create(purpose_id: val)
+     	end
+     	# 現在設定中ならむし
+     	setting_purposes.delete(val) if setting_purposes.include?(val)
+    end
+    setting_purposes.each do |set|
+    	self.board_purposes.find_by(purpose_id: set).delete
+    end
+	end
+
+	# 関連づいたrankの作成、削除
+	def make_rank(params)
+		# 現在設定中のrankのidを配列にする
+		setting_ranks = []
+		self.ranks.each{|k| setting_ranks << k.id}
+		# 設定中の場合は作成
+		params.select{|k, _| k.match(/rank_/)}.each do |_, val|
+			unless setting_ranks.include?(val)
+     		self.board_ranks.create(rank_id: val)
+     	end
+     	# 現在設定中ならむし
+     	setting_ranks.delete(val) if setting_ranks.include?(val)
+    end
+    setting_ranks.each do |set|
+    	self.board_ranks.find_by(rank_id: set).delete
+    end
+	end
+
 end

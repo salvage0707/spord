@@ -22,12 +22,11 @@
 					<!-- 目的  -->
 					<p class="tags-label">目的</p>
 					<ul class="tags clearfix">
-						<% purposes.each do |purpose|  %>
-							<li>
-								<%= check_box_tag "purpose_#{purpose.id}".to_sym, purpose.id,
-								 {checkbox: false}, style: "display: none;" %>
-								<%= label_tag "purpose_#{purpose.id}".to_sym, purpose.name,
-								 class: "purpose_tag" %>
+						<% purposes.each do |p|  %>
+							<li style="background-color: <%= p.what_color(board) %>">
+								<%= check_box_tag "purpose_#{p.id}".to_sym, p.id, p.has_board?(board), style: "display: none;" %>
+								<%= label_tag "purpose_#{p.id}".to_sym, p.name,
+								 class: "purpose_tag", style: "background-color: #{p.what_color(board)}" %>
 							</li>
 						<% end %>
 					</ul>
@@ -36,8 +35,8 @@
 					<p class="tags-label">対象階級</p>
 					<ul class="tags clearfix">
 						<% ranks.each do |rank|  %>
-							<li>
-								<%= check_box_tag "rank_#{rank.id}".to_sym, rank.id, checkbox = false, style: "display: none;" %>
+							<li style="background-color: <%= rank.what_color(board) %>">
+								<%= check_box_tag "rank_#{rank.id}".to_sym, rank.id, rank.has_board?(board), style: "display: none;" %>
 								<%= label_tag "rank_#{rank.id}".to_sym, rank.name, class: "rank_tag" %>
 							</li>
 						<% end %>
@@ -101,7 +100,7 @@
 
 
 <script>
- 	changeBgColor("purpose_tag")
- 	changeBgColor("rank_tag")
+	changeBgColor("purpose_tag");
+ 	changeBgColor("rank_tag");
 </script>
 

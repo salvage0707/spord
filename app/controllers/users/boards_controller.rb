@@ -1,7 +1,7 @@
 class Users::BoardsController < ApplicationController
   before_action :set_info, only: [:new, :edit, :create, :update]
   before_action :set_user, only: [:show]
-  before_action :set_board, only: [:show, :edit]
+  before_action :set_board, only: [:show, :edit, :update]
 
 
   def show
@@ -13,9 +13,6 @@ class Users::BoardsController < ApplicationController
 
   def index
   	@new_boards = Board.last(4)
-  end
-
-  def edit
   end
 
   def new
@@ -30,9 +27,32 @@ class Users::BoardsController < ApplicationController
     @board = Board.new(board_params)
     @board.sport_id = sport.id
     if @board.save
+      # 目的を作成
+      @board.make_purpose(params)
+      # ランクを作成
+      @board.make_ranks(params)
       redirect_to board_path(@board.id)
     else
       render :new
+    end
+  end
+
+  def edit
+  end
+
+  def update
+    # 特定のスポーツを代入
+    sports_name = params[:sports_name]
+    sport = Sport.find_name(sports_name)
+    @board.sport_id = sport.id
+    if @board.update(board_params)
+      # 目的を作成
+      @board.make_purpose(params)
+      # ランクを作成
+      @board.make_rank(params)
+      redirect_to board_path(@board.id)
+    else
+      render :edit
     end
   end
 

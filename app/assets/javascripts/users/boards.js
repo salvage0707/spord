@@ -8,14 +8,12 @@
 function changeBgColor(className) {
 	$(document).on('click', "." + className, function(e){
 		const parent = $(this).parent();
-		const input = $(document).find('input#' + $(this).attr('for'));
+		const input = '#' + $(this).attr('for');
 		// チェックボックスの状態で変化
-		// console.log(alert('#' + $(this).attr('for')))
-		if (input.prop('checked')) {
-			input.prop('checked', false);
+		if ($(input).prop('checked')) {
 			$(this).parent().css('background-color', '#ccc');
+			// console.log(alert('111'));
 		} else {
-			$input.prop('checked', true);
 			$(this).parent().css('background-color', 'red');
 		}
 	})

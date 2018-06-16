@@ -4,7 +4,7 @@
 			<!-- 画像を表示 -->
 			<div class="clearfix">
 				<div class="col-md-6">
-					<%= image_tag "sports02.jpg" %>
+					<%= model_image_tag @board %>
 				</div>
 
 				<div class="col-md-6">
@@ -12,10 +12,23 @@
 						<%= @board.name %>
 					</h4>
 
+
+					<p class="tags-label">目的</p>
 					<ul class="tags clearfix">
-						<li>初心者</li>
-						<li>中級者</li>
-						<li>楽しく</li>
+						<% @board.purposes.each do |p|  %>
+							<li class="purpose_tag">
+								<%= p.name %>
+							</li>
+						<% end %>
+					</ul>
+
+					<p class="tags-label">対象</p>
+					<ul class="tags clearfix">
+						<% @board.ranks.each do |r|  %>
+							<li class="rank_tag">
+								<%= r.name %>
+							</li>
+						<% end %>
 					</ul>
 
 					<ul class="details-table">

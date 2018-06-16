@@ -37,10 +37,16 @@
 				margin: 30px;
 
 				img {
-				width: 364px;
-				height: 340px;
-				float: left;
+					width: 364px;
+					height: 340px;
+					float: left;
+					// vertical-align: middle;
 				}
+
+				.image-text {
+						// vertical-align: middle;
+						// display: inline-block;
+					}
 
 				.details {
 					width: 62%;

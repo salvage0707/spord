@@ -1,45 +1,78 @@
-header {
-	height: 80px;
-	border-bottom: 2px solid #ccc;
-	background-color: #202020;
+%header-a {
 	color: white;
-	div {
+	text-decoration: none;
+	background-color: none;
+	height: 100%;
+	padding-top: 20px;
+	display: inline-block;
+	&:hover {
+		color: #ccccc9;
+	}
+}
+
+header {
+	z-index: 999;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 80px;
+	background-color: rgba(0, 0, 0, 0.9);
+	color: white;
+	.header {
 	height: 80px;
 	}
 
-	// 真ん中
-	.center-box {
-		padding: 0;
-		border-left: 2px solid #ccc;
-		border-right: 2px solid #ccc;
+	.list-box-text {
+		display: inline-block;
+		height: 100%;
+		a {
+			@extend %header-a;
+			font-size: 30px;
+			padding-left: 10px;
+		}
+	}
+}
 
-		.header-top, .header-bottom {
-			height: 40px;
-			border: 1px solid #ccc;
+.header {
+	a {
+		@extend %header-a;
+		font-size: 25px;
+		padding-left: 20px;
+	}
+}
 
-			.item {
-				height: 100%;
-				width: 32.6%;
-				display: inline-block;
-				text-align: center;
-				a {
-					font-size: 17px;
-					color: white;
-					line-height: 2em;
+
+.board-list, .community-list, .user-list {
+	z-index: 999;
+	display: none;
+	background-color:rgba(0,0,0,0.7);
+	width: 100%;
+	height: 100%;
+	position: fixed;
+	top: 80px;
+	.list-box {
+		ul {
+			left: 9.33333334%;
+			position: relative;
+			top: 30px;
+			display: inline-block;
+			li {
+				display: block;
+			}
+			a {
+				text-decoration: none;
+				font-size: 30px;
+				color: white;
+				&:hover {
+					color: #ccccc9;
+				}
+				span {
+					font-size: 15px;
 				}
 			}
-			.item:nth-child(even) {
-				border-left: 2px solid #ccc;
-				border-right: 2px solid #ccc;
-			}
 		}
 	}
-
-	.right-box {
-
-		.fa-sign-in-alt {
-			font-size: 70px;
-		}
-	}
-
 }
+
+

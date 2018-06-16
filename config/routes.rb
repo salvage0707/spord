@@ -11,7 +11,7 @@ Rails.application.routes.draw do
 		  registrations: 'users/users/registrations'
 		}
     resources :users, only: [:show, :index, :destroy]
-    resources :boards, only: [:show, :index, :new, :edit, :destroy, :create] do
+    resources :boards do
       resources :board_users
       # 申請拒否
       patch 'board_users/:id/reject' => 'board_users#reject', as: "board_reject"

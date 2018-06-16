@@ -1,42 +1,96 @@
 <header class="clearfix">
 	<div class="row">
 		<!-- 左 -->
-		<div class="col-md-3" ></div>
+		<div class="col-md-1" ></div>
 
 		<!-- 真ん中 -->
-		<div class="col-md-6 center-box" >
-			<!-- 上 -->
-			<div class="header-top"></div>
-			<!-- 下 -->
-			<div class="header-bottom">
-				<!-- 左 -->
-				<div class="item">
-					<%= link_to "募集一覧", boards_path %>
-				</div>
-				<!-- 真ん中 -->
-				<div class="item">
-					<%= link_to "コミュニティー一覧", "aaa/aaa" %>
-				</div>
-				<!-- 右 -->
-				<div class="item">
-					<%= link_to "ユーザー一覧", "aaa/aaa" %>
-				</div>
+		<div class="col-md-7 center-box header" >
+			<div class="list-box-text">
+				<a href="javasctipt:void(0)" class="h-list-btn" data-name="board-list">Board</a>
+				<a href="javasctipt:void(0)" class="h-list-btn" data-name="community-list">Community</a>
+				<a href="javasctipt:void(0)" class="h-list-btn" data-name="user-list">User</a>
 			</div>
 		</div>
 
 		<!-- 右 -->
-		<div class="col-md-3 right-box">
+		<div class="col-md-3 header">
+			<!-- ログインちゅう　 -->
 			<% if user_signed_in? %>
-				<%= link_to user_path(current_user.id) do %>
-					<%= current_user.full_name %>
-					<span> | </span>
-					<%= link_to "ログアウト", destroy_user_session_path, method: :delete  %>
-				<% end %>
+				<%= link_to "My Page", user_path(current_user.id) %>
+				<%= link_to "Sign Out", destroy_user_session_path, method: :delete  %>
+			<!-- 未ログイン -->
 			<% else %>
-				<%= link_to "ログイン", new_user_session_path  %>
-				<span> | </span>
-				<%= link_to "新規登録", new_user_registration_path  %>
+				<%= link_to "Sign In", new_user_session_path  %>
+				<%= link_to "Sign Up", new_user_registration_path  %>
 			<% end %>
 		</div>
 	</div>
 </header>
+
+<!-- ヘッダーのボタンを押したら表示 -->
+<div class="board-list">
+	<div class="list-box">
+		<ul>
+			<li>
+				<%= link_to boards_path do %>
+					<pre>Board List  <span>募集一覧</span></pre>
+				<% end %>
+			</li>
+			<li>
+				<%= link_to "#" do %>
+					<pre>Genre List  <span>ジャンル一覧</span></pre>
+				<% end %>
+			</li>
+			<li>
+				<%= link_to new_board_path do %>
+					<pre>Make Board  <span>新規募集</span></pre>
+				<% end %>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div class="community-list">
+	<div class="list-box">
+		<ul>
+			<li>
+				<%= link_to communities_path do %>
+					<pre>Community List  <span>募集一覧</span></pre>
+				<% end %>
+			</li>
+			<li>
+				<%= link_to "#" do %>
+					<pre>Genre List  <span>ジャンル一覧</span></pre>
+				<% end %>
+			</li>
+		</ul>
+	</div>
+</div>
+
+<div class="user-list">
+	<div class="list-box">
+		<ul>
+			<li>
+				<%= link_to users_path do %>
+					<pre>User List  <span>募集一覧</span></pre>
+				<% end %>
+			</li>
+			<li>
+				<%= link_to "#" do %>
+					<pre>Genre List  <span>ジャンル一覧</span></pre>
+				<% end %>
+			</li>
+		</ul>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
