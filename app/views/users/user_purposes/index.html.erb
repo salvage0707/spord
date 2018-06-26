@@ -1,0 +1,23 @@
+<div class="user-purpose">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-offset-4 col-md-4">
+				<%= form_for @purpose do |f| %>
+					<div class="field">
+						<%= f.collection_select :purpose_id, Purpose.all, :id, :name %>
+						<%= f.submit "追加", class: "user-purpose-submit" %>
+					</div>
+				<% end %>
+
+				<div class="user-purpose-list">
+					<% @user.user_purposes.each do |user_purpose| %>
+						<ul>
+							<% input = link_to "削除", user_purpose_path(user_purpose.id), method: :delete %>
+							<%= detail_list(user_purpose.purpose.name, input) %>
+						</ul>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

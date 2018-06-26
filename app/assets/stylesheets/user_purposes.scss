@@ -1,0 +1,39 @@
+// Place all the styles related to the user_purposes controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+// 目的の一覧
+
+.user-purpose {
+	margin-top: 70px;
+	#user_purpose_purpose_id {
+		width: 70%;
+	}
+	.user-purpose-submit {
+		width: 20%;
+		height: 20px;
+	}
+
+	.user-purpose-list {
+		margin-top: 30px;
+		margin-bottom: 100px;
+		ul {
+			li {
+				margin-bottom: 10px;
+				list-style: none;
+				p:first-child {
+					width: 70%;
+					font-size: 20px;
+					display: inline-block;
+				}
+				p {
+					width: 20%;
+					font-size: 20px;
+					display: inline-block;
+				}
+			}
+		}
+	}
+}
+
+
+

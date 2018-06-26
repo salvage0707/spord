@@ -9,14 +9,20 @@ class Purpose < ApplicationRecord
 	has_many :boards, through: :board_purposes
 
 	# 目的を設定していたらtrue
-	def has_board?(board)
-		self.boards.include?(board)
+	def has_model?(model)
+		if self.boards.include?(model)
+			true
+		elsif self.communities.include?(model)
+			true
+		else
+			false
+		end
 	end
 
 	# ボタンの背景色を決定
-	def what_color(board)
-		if self.has_board?(board)
-			"red"
+	def what_color(model)
+		if self.has_model?(model)
+			"#e0ffff"
 		else
 			"#ccc"
 		end

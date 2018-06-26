@@ -1,9 +1,9 @@
 class Users::BoardUsersController < ApplicationController
+  before_action :authenticate_user!
 	before_action :set_board
   before_action :set_user
   # 使用を制限
-  before_action :only_signed_in
-  # before_action :only_manager, only: [:show, :index, :reject]
+  before_action :only_manager, only: [:show, :index, :reject]
 
 
 
@@ -51,8 +51,8 @@ class Users::BoardUsersController < ApplicationController
 # 参加者側----------------------------------------------
   def new
     # 申請済みだった場合にリダイレクト
-    if @user.board_users.find_by(board_id: @board.id)
-      redirect_to edit_board_board_users_path(@board.id) and return
+    if request = @user.board_users.find_by(board_id: @board.id)
+      redirect_to edit_board_board_users_path(@board.id, request.id) and return
     end
   	@request = @user.board_users.build
   end

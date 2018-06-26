@@ -36,7 +36,7 @@ function headerBtn() {
 			displayOut('.board-list');
 			displayOut('.community-list');
 			displayOut('.user-list');
-			displayIn(name)
+			displayIn(name);
 		}else{
 			displayOut(name);
 		}

@@ -1,0 +1,43 @@
+// Place all the styles related to the Users::my_sports controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+@import "form";
+
+.user-my_sport {
+	margin-top: 70px;
+	.input-tag {
+		margin-bottom: 10px;
+	}
+
+	#user_my_sport_my_sport_id {
+		width: 70%;
+	}
+	#my_sport_how_long {
+		@extend %form;
+	}
+	.user-my_sport-submit {
+		width: 20%;
+		height: 20px;
+	}
+
+	.user-my_sport-list {
+		margin-top: 30px;
+		margin-bottom: 100px;
+		ul {
+			li {
+				margin-bottom: 10px;
+				list-style: none;
+				p:first-child {
+					width: 70%;
+					font-size: 20px;
+					display: inline-block;
+				}
+				p {
+					width: 25%;
+					font-size: 20px;
+					display: inline-block;
+				}
+			}
+		}
+	}
+}

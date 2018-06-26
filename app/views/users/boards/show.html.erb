@@ -4,7 +4,7 @@
 			<!-- 画像を表示 -->
 			<div class="clearfix">
 				<div class="col-md-6">
-					<%= model_image_tag @board %>
+					<%= board_image_tag @board %>
 				</div>
 
 				<div class="col-md-6">
@@ -43,13 +43,19 @@
 						<!-- 日時 -->
 						<%= detail_list "日時", @board.do_date %>
 						<!-- 人数 -->
-						<%= detail_list "人数", "#{@board.users.count + 1}  /  #{@board.max_people.to_s}"  %>
+						<%= detail_list "人数", "#{@board.good_users.count}  /  #{@board.max_people}"  %>
 						<!-- 締切日 -->
 						<%= detail_list "締切日", @board.closing_date %>
 						<!-- コミュニティ名 -->
-						<%= detail_list "コミュニティ名", "新規コミュニティ" if @board.community_id %>
+						<% if @board.community_id  %>
+							<% input = link_to @board.community.name, community_path(@board.community.id) %>
+							<%= detail_list "コミュニティ名",input %>
+						<% else %>
+							<%= detail_list "コミュニティ名", "設定なし" if @board.community_id %>
+						<% end %>
 						<!-- 作成者 -->
-						<%= detail_list "作成者", @board.manager_user.name %>
+						<% input = link_to @board.manager_user.nickname, user_path(@board.manager_user.id) %>
+						<%= detail_list "作成者", input %>
 					</ul>
 					<!-- 募集紹介ぶん -->
 					<div class="details-text">
@@ -60,39 +66,43 @@
 				</div>
 			</div>
 
-			<div class="charts-recests">
-				<!-- グラフ -->
-				<div class="charts col-md-7">
-				</div>
 
-				<!-- 申請などの一覧 -->
-				<div class="requests col-md-5">
-					<div class="item-box">
-						<!-- 作成者のみに制限 -->
-						<% if @board.manager_user == current_user && user_signed_in? %>
-						<!-- 一時的に非使用 -->
-						<% end %>
-							<%= link_to "募集を編集", edit_board_path(@board.id), class: "item" %>
-							<%= link_to "申請一覧", board_board_users_path(board_id: @board.id), class: "item" %>
-							<%= link_to "拒否申請一覧", board_board_rejects_path(board_id: @board.id), class: "item" %>
-							<%= link_to "許可申請一覧", board_board_rejects_path(board_id: @board.id), class: "item" %>
-						<!-- ここにend -->
-						<!-- 作成者以外 -->
-						<!-- 申請を出していない場合 -->
-						<% if @request == nil %>
-							<%= link_to "参加申請", new_board_board_user_path(board_id: @board.id), class: "item" %>
-						<!-- 申請中の場合 -->
-						<% elsif @request.approval == nil %>
-							<%= link_to "申請取り消し", edit_board_board_user_path(board_id: @board.id, id: @request.id), class: "item" %>
-						<!-- 申請が許可されている場合 -->
-						<% elsif @request.approval == true %>
-							<%= link_to "募集から抜ける", board_board_user_path(board_id: @board.id, id: @request.id), method: :delete,  class: "item" %>
-						<% else %>
-							<p class="item rejecting">申請が拒否されています</p>
-						<% end %>
-					</div>
+
+		</div>
+		<div class="row middle-box">
+			<div class="charts col-md-7"></div>
+
+			<!-- 申請などの一覧 -->
+			<div class="requests col-md-5">
+				<div class="item-box">
+					<!-- 作成者のみに制限 -->
+					<% if @board.manager_user == current_user && user_signed_in? %>
+						<%= link_to "募集を編集", edit_board_path(@board.id), class: "item" %>
+						<%= link_to "申請一覧", board_board_users_path(board_id: @board.id), class: "item" %>
+						<%= link_to "拒否申請一覧", board_board_rejects_path(board_id: @board.id), class: "item" %>
+						<%= link_to "許可申請一覧", board_board_admits_path(board_id: @board.id), class: "item" %>
+					<% end %>
+					<!-- 作成者以外 -->
+					<!-- 申請を出していない場合 -->
+					<% if @request == nil && @board.manager_user != current_user %>
+						<%= link_to "参加申請", new_board_board_user_path(board_id: @board.id), class: "item" %>
+					<!-- 申請中の場合 -->
+					<% elsif @request && @request.approval == nil %>
+						<%= link_to "申請取り消し", edit_board_board_user_path(board_id: @board.id, id: @request.id), class: "item" %>
+					<!-- 申請が許可されている場合 -->
+					<% elsif @request && @request.approval == true %>
+						<%= link_to "募集から抜ける", board_board_user_path(board_id: @board.id, id: @request.id), method: :delete,  class: "item" %>
+					<% elsif @request && @request.approval == false %>
+						<p class="item rejecting">申請が拒否されています</p>
+					<% else %>
+					<% end %>
 				</div>
 			</div>
-		</div>
+		</div><!-- midele-box -->
 	</div>
 </div>
+
+
+
+
+

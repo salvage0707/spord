@@ -1,0 +1,102 @@
+<!-- 画面上部の大きい画像 -->
+<div>
+	<div class="big-bg-iamge" style="background-image: url(<%= community_image_url(@community) %>)"></div>
+</div>
+
+
+
+<div class="community-detail-content">
+	<div class="container">
+		<div class="row">
+
+			<h2 class="form-title">新規募集投稿フォーム</h2>
+
+			<%= form_for community do |f| %>
+
+				<div class="clearfix community-first-box">
+
+					<div class="col-md-7">
+						<p style="font-size: 20px;">画像を選択</p>
+						<%= f.attachment_field :image, style: "margin-bottom: 30px;" %>
+						<h4>
+							<%= f.text_field :name, class: "community-form-title",
+								placeholder: "タイトル" %>
+						</h4>
+
+
+						<p class="tags-label">目的</p>
+						<ul class="tags clearfix">
+							<%= f.collection_check_boxes( :purpose_ids, Purpose.all, :id, :name) do |b| %>
+								<li style="background-color: <%= b.object.what_color(community) %>">
+	    			 	  	<%= b.label class: "purpose_tag" do %>
+	    			 	  		<%= b.check_box style: "display: none;"  %>
+	    			 	  		<%= b.text %>
+	    			 	  	<% end %>
+	    			 	  </li>
+	   					<% end %>
+						</ul>
+
+						<p class="tags-label">対象</p>
+						<ul class="tags clearfix">
+							<%= f.collection_check_boxes( :rank_ids, Rank.all, :id, :name) do |b| %>
+								<li style="background-color: <%= b.object.what_color(community) %>">
+	    			 	  	<%= b.label class: "rank_tag" do %>
+	    			 	  		<%= b.check_box style: "display: none;"  %>
+	    			 	  		<%= b.text %>
+	    			 	  	<% end %>
+	    			 	  </li>
+	   					<% end %>
+	   				</ul>
+
+						<ul class="details-table">
+							<!-- ジャンル -->
+							<% sports_name = community.sport&.name || "" %>
+							<%= detail_list("ジャンル",
+									text_field_tag(:sports_name, sports_name,
+																 class: "community-form-text",
+																 placeholder: "例）テニス、野球、サッカー")) %>
+							<!-- 応募資格 -->
+							<%= detail_list("応募資格",
+								f.text_field(:qualification,
+														class: "community-form-text",
+														placeholder: "例）誰でも歓迎!!")) %>
+							<!-- 区域 -->
+							<%= detail_list("県",
+								f.collection_select(:area_id, Area.all, :id, :name)) %>
+							<!-- 市区町村 -->
+							<%= detail_list("市区町村",
+								f.text_field(:city,
+														 class: "community-form-text",
+														 placeholder: "例）中野区、世田谷区")) %>
+							<!-- 場所 -->
+							<%= detail_list("場所",
+								f.text_field(:place,
+														 class: "board-form-text",
+														 placeholder: "例）OOスポーツセンター")) %>
+							<!-- 日時 -->
+							<%= detail_list("日時",
+								f.text_field(:active_date,
+														 class: "community-form-text",
+														 placeholder: "例）毎週　火曜日　18:00 ~ 20:00")) %>
+							<!-- 人数 -->
+							<%= detail_list("人数",
+								f.text_field(:max_people, class: "community-form-people")) %>
+							<!-- 作成者 -->
+							<%= detail_list("作成者", current_user.nickname) %>
+						</ul>
+						<!-- 募集紹介ぶん -->
+						<%= f.text_area :introduction, class: "community-form-textarea" %>
+
+						<%= f.hidden_field :manager_user_id, value: current_user.id %>
+					</div>
+					<%= f.submit "募集する!", class: "community-submit" %>
+				</div>
+			<% end %>
+		</div>
+	</div>
+</div>
+
+<script>
+	changeBgColor("purpose_tag");
+ 	changeBgColor("rank_tag");
+</script>

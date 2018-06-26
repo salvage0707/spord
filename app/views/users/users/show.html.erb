@@ -5,18 +5,7 @@
 			<!-- 左側 -->
 			<div class="col-md-5">
 				<p class="relationship-text">
-					23 フォロー　｜　13 フォロワー
-				</p>
 
-				<%  %>
-					<%= link_to 'フォロー', "#", class: "item" %>
-				<%  %>
-					<%= link_to 'フォロー解除', "#", class: "item" %>
-				<%  %>
-
-				<%  %>
-					<%= link_to 'メッセージ', "#", class: "item" %>
-				<%  %>
 
 				<%= user_image_tag @this_user, class: "user" %>
 
@@ -37,30 +26,36 @@
 						<!-- 性別 -->
 						<%= detail_list("性別", @this_user.what_sex) %>
 						<!-- スポーツれき -->
-						<%= detail_list("スポーツ歴") do %>
+						<% if @user == @this_user %>
+							<% input = link_to "編集", my_sports_path %>
+						<% end %>
+						<%= detail_list("スポーツ歴", input) do %>
 							<div class="history">
-							<% @this_user.my_sports.each do |my_sport| %>
-								<!-- スポーツ名 -->
-								<p class="sports-name">
-									<%= my_sport.sport.name %>
-								</p>
-								<!-- 歴 -->
-								<p class="sports-years">
-									<%= my_sport.how_long %>
-								</p>
-								<p class="rank">
-									<%= my_sport.rank.name %>
-								</p>
+								<% @this_user.my_sports.each do |my_sport| %>
+									<!-- スポーツ名 -->
+									<p class="sports-name">
+										<%= my_sport.sport.name %>
+									</p>
+									<!-- 歴 -->
+									<p class="sports-years">
+										<%= my_sport.how_long %>
+									</p>
+									<p class="rank">
+										<%= my_sport.rank.name %>
+									</p>
 								<% end %>
 							</div>
 						<% end %>
 						<!-- 目的 -->
-						<%= detail_list("目的") do %>
-							<div class="purpose">
+						<% if @user == @this_user %>
+							<% input = link_to("編集", user_purposes_path)%>
+						<% end %>
+						<%= detail_list("目的", input ) do %>
+							<div class="purpose clearfix">
 								<% @this_user.purposes.each do |purpose| %>
-									<p class="item">
+									<span class="item">
 										<%= purpose.name %>
-									</p>
+									</span>
 									<% end %>
 							</div>
 						<% end %>
@@ -71,6 +66,9 @@
 								</p>
 						<% end %>
 					</ul>
+					<% if @user == @this_user %>
+						<%= link_to "プロフィールの編集", edit_user_path(@this_user.id), class: "user-edit-btn" %>
+					<% end %>
 				</div>
 			</div> <!-- 左側-->
 

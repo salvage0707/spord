@@ -1,0 +1,46 @@
+<div class="user-edit">
+	<div class="container">
+		<div class="row">
+			<p class="flash-message"></p>
+			<!-- 左側 -->
+			<div class="col-md-offset-3 col-md-5">
+				<%= form_for @user do |f| %>
+
+					<%= f.attachment_field :image  %>
+					<%= user_image_tag @user, class: "user" %>
+
+					<div class="profile-list">
+						<ul class="details-table">
+							<!-- ニックネーム -->
+							<%= detail_list("ニックネーム",
+									f.text_field(:nickname, class: 'user-form', placeholder: "ニックネーム")) %>
+							<!-- 本名 -->
+							<%= detail_list("名前",
+									f.text_field(:name, class: "user-form", placeholder: "非表示の場合は#")) %>
+							<!-- 年代 -->
+							<%= detail_list("年齢",
+									f.text_field(:age, class: "user-form", placeholder: "半角英数字")) %>
+							<!-- 地域 -->
+							<%= detail_list("県",
+									f.collection_select(:area_id, Area.all, :id, :name)) %>
+							<!-- 地域 -->
+							<%= detail_list("地域",
+									f.text_field(:city, class: "user-form", placeholder: "例) 中野区、杉並区")) %>
+							<!-- 性別 -->
+							<%= detail_list("性別",
+									f.select(:sex, [["男性", true], ["女性", false]])) %>
+						</ul>
+					</div>
+					<%= f.submit "保存", class: "user-edit-submit" %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	// 高さと横幅を同じに
+	sameHeight('.user')
+	// sameHeight('.community')
+</script>

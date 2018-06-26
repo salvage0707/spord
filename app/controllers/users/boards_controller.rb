@@ -1,7 +1,8 @@
 class Users::BoardsController < ApplicationController
-  before_action :set_info, only: [:new, :edit, :create, :update]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_user, only: [:show]
-  before_action :set_board, only: [:show, :edit, :update]
+  before_action :set_board, only: [:show, :edit, :update, :destroy]
+  before_action :only_manager, only: [:edit, :update]
 
 
   def show
@@ -27,10 +28,8 @@ class Users::BoardsController < ApplicationController
     @board = Board.new(board_params)
     @board.sport_id = sport.id
     if @board.save
-      # 目的を作成
-      @board.make_purpose(params)
-      # ランクを作成
-      @board.make_ranks(params)
+      @board.board_users.create(user_id: current_user.id,
+                                approval: true,)
       redirect_to board_path(@board.id)
     else
       render :new
@@ -46,14 +45,13 @@ class Users::BoardsController < ApplicationController
     sport = Sport.find_name(sports_name)
     @board.sport_id = sport.id
     if @board.update(board_params)
-      # 目的を作成
-      @board.make_purpose(params)
-      # ランクを作成
-      @board.make_rank(params)
       redirect_to board_path(@board.id)
     else
       render :edit
     end
+  end
+
+  def destroy
   end
 
 
@@ -62,6 +60,7 @@ class Users::BoardsController < ApplicationController
 
     def board_params
       params.require(:board).permit(:name,
+                                    :image,
                                     :qualification,
                                     :area_id,
                                     :city,
@@ -70,13 +69,18 @@ class Users::BoardsController < ApplicationController
                                     :max_people,
                                     :closing_date,
                                     :introduction,
-                                    :manager_user_id
+                                    :manager_user_id,
+                                    :purpose_ids => [],
+                                    :rank_ids => [],
                                     )
     end
 
-    def set_info
-      @ranks = Rank.all
-      @areas = Area.all
-      @purposes = Purpose.all
+    # 募集の管理者のみに制限
+    def only_manager
+      board = Board.find_by(id: params[:id])
+      user = User.find_by(id: current_user.id)
+      unless board.manager_user == user
+        redirect_to board_path(board.id)
+      end
     end
 end

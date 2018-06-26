@@ -1,0 +1,46 @@
+
+<div class="container">
+  <div class="row">
+    <div class="sign-up col-md-offset-4 col-md-4">
+      <h2>Sign up</h2>
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+        <%= devise_error_messages! %>
+
+        <div class="field">
+          <%= f.label :nickname %><br />
+          <%= f.email_field :nickname, class: "devise-form", autofocus: true, autocomplete: "nickname", placeholder: "ニックネーム" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :name %><br />
+          <%= f.email_field :nickname, class: "devise-form", autofocus: true, autocomplete: "email", placeholder: "非表示の場合は先頭に#" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :email %><br />
+          <%= f.email_field :email, class: "devise-form", autofocus: true, autocomplete: "email", placeholder: "メールアドレス" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password %>
+          <% if @minimum_password_length %>
+          <em>(<%= @minimum_password_length %> characters minimum)</em>
+          <% end %><br />
+          <%= f.password_field :password, class: "devise-form", autocomplete: "off", placeholder: "パスワード" %>
+        </div>
+
+        <div class="field">
+          <%= f.label :password_confirmation %><br />
+          <%= f.password_field :password_confirmation, class: "devise-form", autocomplete: "off", placeholder: "もう一度" %>
+        </div>
+
+        <div class="actions">
+          <%= f.submit "Sign up", class: "submit-btn" %>
+        </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

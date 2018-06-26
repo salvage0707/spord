@@ -17,11 +17,13 @@ class User < ApplicationRecord
   has_many :my_sports
   has_many :board_users
   has_many :community_users
-  has_many :user_purpose
+  has_many :user_purposes
   # 多対多
   has_many :sports, through: :my_sports
   has_many :boards, through: :board_users
-  has_many :purposes, through: :user_purpose
+  has_many :purposes, through: :user_purposes
+
+  validates :nickname, :name, presence: true
 
 
   def full_name
@@ -44,23 +46,6 @@ class User < ApplicationRecord
     end
   end
 
-  # 男性か判別
-  def man?
-    if sex == true
-      true
-    else
-      false
-    end
-  end
-
-  # 女性か判別
-  def woman?
-    if sex == true
-      false
-    else
-      true
-    end
-  end
 
   # 参加中の募集を返す
   def joining_boards
@@ -70,6 +55,16 @@ class User < ApplicationRecord
       boards <<  b.board
     end
     boards
+  end
+
+  # 参加中の募集を返す
+  def joining_Communities
+    communities = []
+    community_users = self.community_users.where(approval: true)
+    community_users.each do |b|
+      communities <<  b.community
+    end
+    communities
   end
 
 end

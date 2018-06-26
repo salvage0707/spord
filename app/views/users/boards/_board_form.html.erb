@@ -1,4 +1,4 @@
-<!-- 使用変数 board: Board変数, purposes: Purpose.all変数, ranks: Rank.all変数, areas: Area.all変数 -->
+<!-- 使用変数 board: Board変数-->
 <div class="board-detail-content">
 	<div class="container">
 		<div class="row">
@@ -22,30 +22,34 @@
 					<!-- 目的  -->
 					<p class="tags-label">目的</p>
 					<ul class="tags clearfix">
-						<% purposes.each do |p|  %>
-							<li style="background-color: <%= p.what_color(board) %>">
-								<%= check_box_tag "purpose_#{p.id}".to_sym, p.id, p.has_board?(board), style: "display: none;" %>
-								<%= label_tag "purpose_#{p.id}".to_sym, p.name,
-								 class: "purpose_tag", style: "background-color: #{p.what_color(board)}" %>
-							</li>
-						<% end %>
+						<%= f.collection_check_boxes( :purpose_ids, Purpose.all, :id, :name) do |b| %>
+							<li style="background-color: <%= b.object.what_color(board) %>">
+    			 	  	<%= b.label class: "purpose_tag" do %>
+    			 	  		<%= b.check_box style: "display: none;"  %>
+    			 	  		<%= b.text %>
+    			 	  	<% end %>
+    			 	  </li>
+   					<% end %>
 					</ul>
 
 					<!-- 対象階級 -->
 					<p class="tags-label">対象階級</p>
 					<ul class="tags clearfix">
-						<% ranks.each do |rank|  %>
-							<li style="background-color: <%= rank.what_color(board) %>">
-								<%= check_box_tag "rank_#{rank.id}".to_sym, rank.id, rank.has_board?(board), style: "display: none;" %>
-								<%= label_tag "rank_#{rank.id}".to_sym, rank.name, class: "rank_tag" %>
-							</li>
-						<% end %>
+						<%= f.collection_check_boxes( :rank_ids, Rank.all, :id, :name) do |b| %>
+							<li style="background-color: <%= b.object.what_color(board) %>">
+    			 	  	<%= b.label class: "rank_tag" do %>
+    			 	  		<%= b.check_box style: "display: none;"  %>
+    			 	  		<%= b.text %>
+    			 	  	<% end %>
+    			 	  </li>
+   					<% end %>
 					</ul>
 
 					<ul class="details-table details-form">
 						<!-- ジャンル -->
+						<% sports_name = board.sport&.name || "" %>
 						<%= detail_list("ジャンル",
-								text_field_tag(:sports_name, "",
+								text_field_tag(:sports_name, sports_name,
 															 class: "board-form-text",
 															 placeholder: "例）テニス、野球、サッカー")) %>
 						<!-- 応募資格 -->
@@ -55,7 +59,7 @@
 														placeholder: "例）誰でも歓迎!!")) %>
 						<!-- 県 -->
 						<%= detail_list("県",
-								f.collection_select(:area_id, areas, :id, :name)) %>
+								f.collection_select(:area_id, Area.all, :id, :name)) %>
 						<!-- 市区町村 -->
 						<%= detail_list("市区町村",
 								f.text_field(:city,
@@ -83,7 +87,7 @@
 						<!-- コミュニティ名 -->
 						<%= detail_list"コミュニティ名", "新規コミュニティ" if board.community_id %>
 						<!-- 作成者 -->
-						<%= detail_list("作成者", current_user.name) %>
+						<%= detail_list("作成者", current_user.nickname) %>
 					</ul>
 					<!-- 募集紹介ぶん -->
 					<%= f.text_area :introduction, class: "board-form-textarea" %>

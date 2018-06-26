@@ -1,0 +1,35 @@
+<div class="user-my_sport">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-offset-4 col-md-4">
+				<%= form_for @sport do |f| %>
+					<div class="field">
+					<div class="input-tag">
+						<%= f.collection_select :sport_id, Sport.all, :id, :name %>
+					</div>
+					<div class="input-tag">
+						<%= f.collection_select :rank_id, Rank.all, :id, :name %>
+					</div>
+					<div class="input-tag">
+						<%= f.label :how_long, "経験年数" %><br>
+						<%= f.text_field :how_long, placeholder: "半角英数字" %>
+					</div>
+					<%= f.submit "追加", class: "user-my_sport-submit" %>
+				</div>
+			<% end %>
+
+				<div class="user-my_sport-list">
+					<% @user.my_sports.each do |my_sport| %>
+						<ul>
+							<% input = link_to "削除", my_sport_path(my_sport.id), method: :delete %>
+							<%= detail_list(my_sport.sport.name, input) do %>
+								<p class="rank"><%= my_sport.rank.name %></p>
+								<p class="how-long"><%= my_sport.how_long %>年</p>
+							<% end %>
+						</ul>
+					<% end %>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

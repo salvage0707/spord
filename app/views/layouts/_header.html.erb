@@ -8,7 +8,7 @@
 			<div class="list-box-text">
 				<a href="javasctipt:void(0)" class="h-list-btn" data-name="board-list">Board</a>
 				<a href="javasctipt:void(0)" class="h-list-btn" data-name="community-list">Community</a>
-				<a href="javasctipt:void(0)" class="h-list-btn" data-name="user-list">User</a>
+				<!-- <a href="javasctipt:void(0)" class="h-list-btn" data-name="user-list">User</a> -->
 			</div>
 		</div>
 
@@ -37,10 +37,7 @@
 				<% end %>
 			</li>
 			<li>
-				<%= link_to "#" do %>
-					<pre>Genre List  <span>ジャンル一覧</span></pre>
-				<% end %>
-			</li>
+
 			<li>
 				<%= link_to new_board_path do %>
 					<pre>Make Board  <span>新規募集</span></pre>
@@ -55,29 +52,14 @@
 		<ul>
 			<li>
 				<%= link_to communities_path do %>
-					<pre>Community List  <span>募集一覧</span></pre>
+					<pre>Community List  <span>コミュニティ一覧</span></pre>
 				<% end %>
 			</li>
 			<li>
-				<%= link_to "#" do %>
-					<pre>Genre List  <span>ジャンル一覧</span></pre>
-				<% end %>
-			</li>
-		</ul>
-	</div>
-</div>
 
-<div class="user-list">
-	<div class="list-box">
-		<ul>
 			<li>
-				<%= link_to users_path do %>
-					<pre>User List  <span>募集一覧</span></pre>
-				<% end %>
-			</li>
-			<li>
-				<%= link_to "#" do %>
-					<pre>Genre List  <span>ジャンル一覧</span></pre>
+				<%= link_to new_community_path do %>
+					<pre>New Community  <span>新規コミュニティ</span></pre>
 				<% end %>
 			</li>
 		</ul>

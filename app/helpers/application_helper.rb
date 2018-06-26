@@ -14,23 +14,28 @@ module ApplicationHelper
 	end
 
 	# ユーザーの画像を出力
-	def uesr_image_tag(uesr, option = {})
+	def user_image_tag(uesr, option = {})
 		if uesr.image_id
-			attachment_image_tag(uesr, :iamge, class: option[:class] )
+			attachment_image_tag(uesr, :image, class: option[:class] )
 		else
 			image_tag('no_user_image.jpg', class: option[:class] )
 		end
 	end
 
-	# モデルの画像を出力
-	# no imageを入れたい
-	def model_image_tag(model, option = {})
-		if model.image_id
-			attachment_image_tag(model, :iamge, class: option[:class] )
+	# boardの画像を出力
+	def board_image_tag(board, option = {})
+		if board.image_id
+			attachment_image_tag(board, :image, class: option[:class] )
 		else
-			input = image_tag('no_sports_image.jpg', class: option[:class])
-			# input += "NO IMAGE"
-			# input
+			image_tag('no_sports_image.jpg', class: option[:class])
+		end
+	end
+
+	def community_image_url(board)
+		if board.image_id
+			attachment_url(board, :image)
+		else
+			asset_url('no_sports_image.jpg')
 		end
 	end
 
@@ -42,14 +47,14 @@ module ApplicationHelper
 		# 小さい画像
 		if option[:type] == :small
 			if sports.big_image_id
-				attachment_image_tag(sports, :big_iamge, class: option[:class] )
+				attachment_image_tag(sports, :big_image, class: option[:class] )
 			else
 				image_tag('no_user_image.jpg', class: option[:class] )
 			end
 		# 大きい画像
 		elsif option[:type] == :big
 			if sports.image_id
-				attachment_image_tag(sports, :iamge, class: option[:class] )
+				attachment_image_tag(sports, :image, class: option[:class] )
 			else
 				image_tag('no_user_image.jpg', class: option[:class] )
 			end

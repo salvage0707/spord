@@ -11,10 +11,10 @@ function changeBgColor(className) {
 		const input = '#' + $(this).attr('for');
 		// チェックボックスの状態で変化
 		if ($(input).prop('checked')) {
-			$(this).parent().css('background-color', '#ccc');
+			$(this).parent().css('background-color', '#e0ffff');
 			// console.log(alert('111'));
 		} else {
-			$(this).parent().css('background-color', 'red');
+			$(this).parent().css('background-color', '#ccc');
 		}
 	})
 };

@@ -33,3 +33,27 @@ body {
 
 
 
+// 詳細の表示
+.details-table {
+	display: block;
+	margin-top: 20px;
+
+	li {
+		width: 100%;
+		margin-top: 5px;
+		list-style: none;
+		border-bottom: 1px solid #a9a9a9;
+
+		p {
+			width: 60%;
+			font-size: 14px;
+			display: inline-block;
+		}
+		p:first-child {
+			text-align: center;
+			margin-right: 10px;
+			width: 30%;
+			font-size: 17px;
+		}
+	}
+}

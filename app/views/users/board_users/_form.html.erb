@@ -11,7 +11,7 @@
 					<!-- 編集画面のみに表示 -->
 					<% action = controller.action_name %>
 					<% if action == "edit" || action == "update" %>
-						<%= link_to '削除', board_board_users_path, method: :delete, class: "delete-btn" %>
+						<%= link_to '削除', board_board_user_path(board_id: board.id, id: request.id), method: :delete, class: "delete-btn" %>
 					<% end %>
 
 					<%= f.submit "#{btn_name}", class: "submit-btn" %>

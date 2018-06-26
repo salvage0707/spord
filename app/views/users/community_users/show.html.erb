@@ -1,0 +1,17 @@
+<!-- しようしていない -->
+<div class="request-board-user">
+	<div class="container">
+		<div class="row">
+			<div class="item col-md-offset-3 col-md-6">
+				<h3><%= @request.user.name %></h3>
+
+					<p class="comment-form">
+						<% @request.comment %>
+					</p>
+
+					<%= link_to '拒否', board_reject_board_user_path(board_id: @board.id), method: :delete, class: "delete_btn" %>
+
+			</div>
+		</div>
+	</div>
+</div>

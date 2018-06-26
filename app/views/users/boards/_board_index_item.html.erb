@@ -10,10 +10,17 @@
 				<div class="item clearfix">
 				<!-- 募集内容詳細 -->
 					<div class="item-content clearfix">
-					<!-- 画像 -->
-						<%= link_to board_path(board.id) do %>
-							<%= model_image_tag board %>
-						<% end %>
+						<!-- 画像 -->
+						<div class="no-image">
+							<!-- <div> -->
+							<%= link_to board_path(board.id) do %>
+								<%= board_image_tag board %>
+							<% end %>
+							<!-- </div>
+							<p class="img-text">
+								NO IMAGE
+							</p> -->
+						</div>
 
 						<!-- 詳細情報 -->
 						<div class="details">
@@ -22,11 +29,24 @@
 								<h4><%= board.name %></h4>
 							<% end %>
 
+								<p class="tags-label">目的</p>
 								<ul class="tags clearfix">
-									<li>初心者</li>
-									<li>中級者</li>
-									<li>楽しく</li>
+									<% board.purposes.each do |p|  %>
+										<li class="purpose_tag">
+											<%= p.name %>
+										</li>
+									<% end %>
 								</ul>
+
+								<p class="tags-label">対象</p>
+								<ul class="tags clearfix">
+									<% board.ranks.each do |r|  %>
+										<li class="rank_tag">
+											<%= r.name %>
+										</li>
+									<% end %>
+								</ul>
+
 
 							<div class="row">
 								<div class="col-md-7">
@@ -42,7 +62,7 @@
 										<!-- 日時 -->
 										<%= detail_list "日時", board.do_date %>
 										<!-- 人数 -->
-										<%= detail_list "人数", "10" + " / " + board.max_people.to_s  %>
+										<%= detail_list "人数", "#{board.good_users.count} /  #{board.max_people}"  %>
 										<!-- 締切日 -->
 										<%= detail_list "締切日", board.closing_date %>
 									</ul>

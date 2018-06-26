@@ -55,11 +55,14 @@
 			.rank {
 				width: 20%;
 			}
+		}
 
-			.purpose {
-				.item {
-					@extend %tag-info;
-				}
+		.purpose {
+			text-align: left;
+			margin-top: 10px;
+			.item {
+				display: inline-block;
+				@extend %tag-info;
 			}
 		}
 	}
@@ -95,3 +98,32 @@
 		}
 	}
 }
+
+.user-edit {
+	margin-top: 100px;
+	margin-bottom: 100px;
+	.user-form {
+		@extend %form;
+		width: 100%;
+	}
+	.user-edit-submit {
+		margin-top: 30px;
+		height: 50px;
+		width: 100%;
+		border-radius: 20px;
+		border: none;
+		background-color: #00bfff;
+	}
+}
+
+.user-edit-btn {
+	margin-top: 30px;
+	padding: 7px 0;
+	display: block;
+	text-align: center;
+	background-color: #ccc;
+	border-radius: 3px;
+	box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.6);
+	text-decoration: none;
+}
+

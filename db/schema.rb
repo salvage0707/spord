@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_06_08_091205) do
+ActiveRecord::Schema.define(version: 2018_06_22_072342) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -136,7 +136,7 @@ ActiveRecord::Schema.define(version: 2018_06_08_091205) do
     t.integer "community_id"
     t.integer "permission", default: 0
     t.string "comment"
-    t.boolean "approval", default: false
+    t.boolean "approval"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["community_id"], name: "index_community_users_on_community_id"
@@ -177,7 +177,7 @@ ActiveRecord::Schema.define(version: 2018_06_08_091205) do
   end
 
   create_table "my_sports", force: :cascade do |t|
-    t.integer "storts_id"
+    t.integer "sport_id"
     t.integer "user_id"
     t.integer "how_long"
     t.integer "rank_id", default: 0

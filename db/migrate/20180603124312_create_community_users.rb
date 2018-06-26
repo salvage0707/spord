@@ -5,7 +5,7 @@ class CreateCommunityUsers < ActiveRecord::Migration[5.2]
       t.integer :community_id
       t.integer :permission, default:0
       t.string :comment
-      t.boolean :approval, default: false
+      t.boolean :approval
 
       t.timestamps
     end
