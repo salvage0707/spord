@@ -2,7 +2,7 @@ class Users::UsersController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
 	before_action :set_user, only: [:show, :edit, :update]
   def show
-  	@this_user = User.find_by(id: params[:id])
+  	@this_user = User.find(params[:id])
   	@boards = @this_user.joining_boards
   	@communities = @this_user.joining_Communities
   end

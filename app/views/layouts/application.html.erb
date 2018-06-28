@@ -6,14 +6,17 @@
     <%= csp_meta_tag %>
 
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
-    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag    'application', media: 'all'  %>
+    <%= javascript_include_tag 'application'  %>
   </head>
 
   <body>
 
     <!-- ヘッダー -->
     <%= render 'layouts/header' %>
+	<script>
+		headerBtn()
+	</script>
 
     <%= yield %>
 

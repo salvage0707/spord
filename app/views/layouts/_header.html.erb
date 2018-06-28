@@ -66,13 +66,41 @@
 	</div>
 </div>
 
+<script>
+$(document).load(function(){
+        headerBtn();
+});
 
+function headerBtn() {
+	$('.h-list-btn').on('click', function(){
+		const name = '.' + $(this).data('name')
 
+		if ($(name).css('display') == 'none') {
+			displayOut('.board-list');
+			displayOut('.community-list');
+			displayOut('.user-list');
+			displayIn(name);
+		}else{
+			displayOut(name);
+		}
+	});
 
+        $('.board-list').on('click', function(){
 
+                        displayOut(this);
+        });
+	 $('.community-list').on('click', function(){
 
+                        displayOut(this);
+        });
 
+};
 
+function displayOut(selector) {
+	$(selector).fadeOut('show');
+};
 
-
-
+function displayIn(selector) {
+	$(selector).fadeIn('show');
+}
+</script>

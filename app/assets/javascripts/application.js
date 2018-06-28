@@ -12,41 +12,6 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require jquery
 //= require_tree .
 
-
-
-//  // = require highcharts/highcharts
-//  // = require highcharts/highcharts-more
-//  // = require highcharts/highstock
-
-
-$(document).ready(function(){
-	headerBtn()
-});
-
-
-function headerBtn() {
-	$(document).on('click', '.h-list-btn', function(){
-		const name = '.' + $(this).data('name')
-
-		if ($(name).css('display') == 'none') {
-			displayOut('.board-list');
-			displayOut('.community-list');
-			displayOut('.user-list');
-			displayIn(name);
-		}else{
-			displayOut(name);
-		}
-	});
-};
-
-function displayOut(selector) {
-	$(selector).fadeOut('show');
-};
-
-function displayIn(selector) {
-	$(selector).fadeIn('show');
-}

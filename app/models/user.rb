@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   attachment :image
 
-  belongs_to :area
+  belongs_to :area, required: false
   has_many :msg_to_user
   has_many :msg_to_board
   has_many :msg_to_communities
@@ -32,9 +32,13 @@ class User < ApplicationRecord
 
   # 年代を返す
   def generation
-    if age[1]
-      age / 10 * 10
-    end
+	if self.age != nil
+  		if self.age[1]
+      			age / 10 * 10
+		end
+	else
+		"設定されていません"
+  	end
   end
 
   # 性別を返す

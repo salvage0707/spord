@@ -22,7 +22,11 @@
 						<!-- 年代 -->
 						<%= detail_list("年代", @this_user.generation.to_s + "代") %>
 						<!-- 地域 -->
-						<%= detail_list("地域", @this_user.area.name + "  " + @this_user.city) %>
+						<% if @this_user.area != nil %>
+							<%= detail_list("地域", @this_user.area.name + "  " + @this_user.city) %>
+						<% else %>
+							 <%= detail_list("地域", "未設定") %>
+						<% end %>
 						<!-- 性別 -->
 						<%= detail_list("性別", @this_user.what_sex) %>
 						<!-- スポーツれき -->
