@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       patch 'board_users/:id/admit' => 'board_users#admit', as: "board_admit"
       get 'board_users/board_users/admits' => 'board_users#admit_index', as: "board_admits"
     end
+    get 'boards/genre/:genre' => 'boards#genre', as: "boards_genre"
     resources :communities do
       resources :community_users
       # 申請拒否
@@ -32,6 +33,7 @@ Rails.application.routes.draw do
       patch 'community_users/:id/admit' => 'community_users#admit', as: "community_admit"
       get 'community_users/community_users/admits' => 'community_users#admit_index', as: "community_admits"
     end
+    get 'communities/genre/:genre' => 'communities#genre', as: 'communities_genre'
   end
 
 

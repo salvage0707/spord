@@ -39,8 +39,16 @@
 			<li>
 
 			<li>
-				<%= link_to new_board_path do %>
+				<%= link_to new_board_path, style: "text-decoretion: none;" do %>
 					<pre>Make Board  <span>新規募集</span></pre>
+				<% end %>
+			</li>
+			<li>
+				<pre>Genre list  <span>ジャンル一覧</span></pre>
+				<% @sports_genre.each do |sport| %>
+					<div class="genre-list">
+						<%= link_to sport.name, boards_genre_path(genre: sport.name) %>
+					</div>
 				<% end %>
 			</li>
 		</ul>
@@ -60,6 +68,14 @@
 			<li>
 				<%= link_to new_community_path do %>
 					<pre>New Community  <span>新規コミュニティ</span></pre>
+				<% end %>
+			</li>
+			<li>
+				<pre>Genre list  <span>ジャンル一覧</span></pre>
+				<% @sports_genre.each do |sport| %>
+					<div class="genre-list">
+						<%= link_to sport.name, communities_genre_path(genre: sport.name) %>
+					</div>
 				<% end %>
 			</li>
 		</ul>

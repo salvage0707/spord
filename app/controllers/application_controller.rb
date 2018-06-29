@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
 	before_action :configure_permitted_parameters, if: :devise_controller?
 	# 全ページに@userをセット
 	before_action :set_user
+	before_action :set_sports
 
 	protected
 		def configure_permitted_parameters
@@ -38,6 +39,10 @@ class ApplicationController < ActionController::Base
 			unless current_user
 				redirect_to new_user_session_path
 			end
+		end
+
+		def set_sports
+			@sports_genre = Sport.all
 		end
 
 end

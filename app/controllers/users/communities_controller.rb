@@ -50,6 +50,15 @@ class Users::CommunitiesController < ApplicationController
   def destroy
   end
 
+  def genre
+    if genre = Sport.find_by(name: params[:genre])
+      @communities = Community.where(sport_id: genre.id)
+      render :index
+    else
+      redirect_to communities_path
+    end
+  end
+
   private
     def community_params
       params.require(:community).permit(:name,

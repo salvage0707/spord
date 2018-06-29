@@ -77,9 +77,9 @@
 						<% elsif @request && @request.approval == nil %>
 							<%= link_to "申請取り消し", edit_community_community_user_path(community_id: @community.id, id: @request.id), class: "item" %>
 						<!-- 申請が許可されている場合 -->
-						<% elsif @request && @request.approval == true %>
+						<% elsif @request && @request.approval == true && @community.manager_user != current_user%>
 							<%= link_to "コミュニティから抜ける", community_community_user_path(community_id: @community.id, id: @request.id), method: :delete,  class: "item" %>
-						<% elsif @request && @request.approval == false %>
+						<% elsif @request && @request.approval == false  %>
 							<p class="item rejecting">申請が拒否されています</p>
 						<% else %>
 						<% end %>

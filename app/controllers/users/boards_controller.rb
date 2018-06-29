@@ -13,7 +13,7 @@ class Users::BoardsController < ApplicationController
   end
 
   def index
-  	@new_boards = Board.last(4)
+  	@boards = Board.last(4)
   end
 
   def new
@@ -52,6 +52,15 @@ class Users::BoardsController < ApplicationController
   end
 
   def destroy
+  end
+
+  def genre
+    if genre = Sport.find_by(name: params[:genre])
+      @boards = Board.where(sport_id: genre.id)
+      render :index
+    else
+      redirect_to boards_path
+    end
   end
 
 

@@ -17,13 +17,6 @@
 	<script>
 		headerBtn()
 	</script>
-
     <%= yield %>
-
-    <!-- デバッグ用 -->
-    <div style="border: 2px solid #ccc">
-     <%= debug(params) if Rails.env.development? %>
-    </div>
-
   </body>
 </html>
