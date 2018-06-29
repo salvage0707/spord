@@ -90,7 +90,7 @@
 					<% elsif @request && @request.approval == nil %>
 						<%= link_to "申請取り消し", edit_board_board_user_path(board_id: @board.id, id: @request.id), class: "item" %>
 					<!-- 申請が許可されている場合 -->
-					<% elsif @request && @request.approval == true %>
+					<% elsif @request && @request.approval == true &&  @board.manager_user != current_user %>
 						<%= link_to "募集から抜ける", board_board_user_path(board_id: @board.id, id: @request.id), method: :delete,  class: "item" %>
 					<% elsif @request && @request.approval == false %>
 						<p class="item rejecting">申請が拒否されています</p>

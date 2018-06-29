@@ -20,7 +20,7 @@
 							<%= detail_list("名前", @this_user.full_name) %>
 						<% end %>
 						<!-- 年代 -->
-						<%= detail_list("年代", @this_user.generation.to_s + "代") %>
+						<%= detail_list("年代", @this_user.generation) %>
 						<!-- 地域 -->
 						<% if @this_user.area != nil %>
 							<%= detail_list("地域", @this_user.area.name + "  " + @this_user.city) %>

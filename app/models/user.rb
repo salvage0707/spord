@@ -32,11 +32,12 @@ class User < ApplicationRecord
 
   # 年代を返す
   def generation
-	if self.age != nil
-  		if self.age[1]
-      			age / 10 * 10
-		end
-	else
+  	if self.age != nil
+    	if self.age
+      	gene = age / 10 * 10
+        return "#{gene} 代"
+  		end
+  	else
 		"設定されていません"
   	end
   end
