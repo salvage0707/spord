@@ -63,6 +63,7 @@
 					<div class="item-box">
 						<!-- 作成者のみに制限 -->
 						<% if @community.manager_user == current_user && user_signed_in? %>
+							<%= link_to "ユーザー一覧", community_users_path(@community.id), class: "item" %>
 							<%= link_to "コミュニティを編集", edit_community_path(@community.id), class: "item" %>
 							<%= link_to "申請一覧", community_community_users_path(community_id: @community.id), class: "item" %>
 							<%= link_to "拒否申請一覧", community_community_rejects_path(community_id: @community.id), class: "item" %>

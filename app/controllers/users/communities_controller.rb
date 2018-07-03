@@ -59,6 +59,10 @@ class Users::CommunitiesController < ApplicationController
     end
   end
 
+	def users
+		@community = Community.find_by(id: params[:community_id])
+	end
+
   private
     def community_params
       params.require(:community).permit(:name,

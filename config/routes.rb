@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     resources :boards do
 			resource :msg_to_boards, only: [:index]
 			#参加しているユーザー一覧
-			get 'baords/:id/users' => 'boards#users', as: 'users'
+			get 'users' => 'boards#users', as: 'users'
       resources :board_users
       # 申請拒否
       patch 'board_users/:id/reject' => 'board_users#reject', as: "board_reject"
@@ -32,6 +32,8 @@ Rails.application.routes.draw do
     end
     get 'boards/genre/:genre' => 'boards#genre', as: "boards_genre"
     resources :communities do
+			resource :commuity_to_users, only: [:index]
+			get 'users' => 'communities#users', as: 'users'
       resources :community_users
       # 申請拒否
       patch 'community_users/:id/reject' => 'community_users#reject', as: "community_reject"
