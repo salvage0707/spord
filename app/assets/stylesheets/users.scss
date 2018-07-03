@@ -102,9 +102,15 @@
 .user-edit {
 	margin-top: 100px;
 	margin-bottom: 100px;
+	img {
+		width: 100%;
+	}
 	.user-form {
 		@extend %form;
 		width: 100%;
+	}
+	.user-form-area {
+		height: 200px;
 	}
 	.user-edit-submit {
 		margin-top: 30px;

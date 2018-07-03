@@ -10,6 +10,30 @@
 				<div class="item clearfix">
 				<!-- 募集内容詳細 -->
 					<div class="item-content clearfix">
+						<div class="no-image">
+							<canvas id="<%= "chart-#{community.id}" %>" class="no-image" style="height: 100%;">
+							</canvas>
+						</div>
+							<script>
+								var data = {
+								datasets: [{
+								backgroundColor: ["rgb(255, 99, 132)","rgb(54, 162, 235)","rgb(255, 205, 86)"],
+								data: [<%= community.rank_count("初心者")%>,
+											 <%= community.rank_count("中級者")%>,
+											 <%= community.rank_count("上級者")%>]
+								}],
+								labels: [
+								'初心者',
+								'中級者',
+								'上級者'
+								]
+								};
+								var ctx = document.getElementById("<%= "chart-#{community.id}" %>").getContext('2d');
+								var myDoughnutChart = new Chart(ctx, {
+									    type: 'doughnut',
+									    data: data,
+											});
+							</script>
 						<!-- 詳細情報 -->
 						<div class="details">
 							<!-- 募集タイトル -->

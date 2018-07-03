@@ -35,6 +35,8 @@
 						<% end %>
 						<%= detail_list("スポーツ歴", input) do %>
 							<div class="history">
+								<p></p>
+								<p></p>
 								<% @this_user.my_sports.each do |my_sport| %>
 									<!-- スポーツ名 -->
 									<p class="sports-name">
@@ -42,7 +44,7 @@
 									</p>
 									<!-- 歴 -->
 									<p class="sports-years">
-										<%= my_sport.how_long %>
+										<%= my_sport.how_long %> 年
 									</p>
 									<p class="rank">
 										<%= my_sport.rank.name %>

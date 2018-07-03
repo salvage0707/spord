@@ -1,4 +1,5 @@
 class Board < ApplicationRecord
+	scope :active, -> { where("closing_date >= ?", Date.today) }
 
 	# refileの設定
 	attachment :image

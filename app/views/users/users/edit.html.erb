@@ -29,6 +29,9 @@
 							<!-- 性別 -->
 							<%= detail_list("性別",
 									f.select(:sex, [["男性", true], ["女性", false]])) %>
+							<!-- 紹介文 -->
+							<%= detail_list("紹介文",
+									f.text_area(:introduction, class: "user-form user-form-area", placeholder: "紹介文")) %>
 						</ul>
 					</div>
 					<%= f.submit "保存", class: "user-edit-submit" %>

@@ -26,4 +26,18 @@ class Community < ApplicationRecord
 		self.community_users.where(approval: true)
 	end
 
+	def rank_count(rank_name) 
+		count = 0
+		self.community_users.where(approval: true).each do |joining|
+			if sport = joining.user.my_sports.find_by(sport_id: self.sport.id)
+				if sport.rank.name == rank_name 
+					count += 1
+				end
+			elsif rank_name == "初心者"
+				count += 1
+			end
+		end
+		return count
+	end
+
 end
