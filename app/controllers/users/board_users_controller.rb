@@ -10,7 +10,7 @@ class Users::BoardUsersController < ApplicationController
 # 作成者側------------------------------------------------------
 
   def index
-    @requests = @board.board_users.where('approval = ? AND user_id != ?', nil, @board.manager_user_id)
+    @requests = @board.board_users.where('approval IS NULL AND user_id != ?', @board.manager_user_id)
   end
 
   def reject_index

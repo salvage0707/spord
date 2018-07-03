@@ -1,7 +1,7 @@
 class Users::BoardsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :set_user, only: [:show]
-  before_action :set_board, only: [:show, :edit, :update, :destroy]
+  before_action :set_board, only: [:show, :edit, :update, :destroy, :users]
   before_action :only_manager, only: [:edit, :update]
 
 
@@ -63,7 +63,8 @@ class Users::BoardsController < ApplicationController
     end
   end
 
-
+	def users
+	end
 
   private
 

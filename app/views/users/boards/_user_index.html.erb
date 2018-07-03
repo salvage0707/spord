@@ -1,0 +1,40 @@
+<!-- 使用変数 object: boardなど -->
+<div class="object-users">
+	<div class="container">
+     <div class="row">
+       	<div class="row">
+					<div class="user-box col-md-offset-3 col-md-6">
+						<div class="image">
+							<%= user_image_tag @board.manager_user %>
+						</div>
+						<div class="image-text">
+							<p>
+								名前：　<%= @board.manager_user.name %>
+							</p>
+							<p>
+								<%= @board.manager_user.introduction %>
+							</p>
+						</div>
+					</div>
+        </div>
+				<div class="col-md-offset-1">
+					<% @board.users.where.not(id: @board.manager_user.id).each do |user| %>
+						<div class="user-box col-md-5">
+							<%= user_image_tag user %>
+							<div class="image-text">
+								<p>
+									名前：　<%= user.name %>
+								</p>
+								<p>
+									<%= user.introduction %>
+								</p>
+							</div>
+						</div>
+					<% end %>
+				</div>
+     </div>
+	</div>
+</div>
+<script>
+	sameHeight('img')
+</script>

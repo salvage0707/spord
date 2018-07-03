@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
 
   namespace :users do
+    get 'msg_to_boards/index'
+  end
+  namespace :users do
     get 'my_sports/index'
   end
   get 'user_purposes/index'
@@ -17,6 +20,9 @@ Rails.application.routes.draw do
     resources :user_purposes, only: [:index, :create, :update, :destroy]
     resources :my_sports, only: [:index, :create, :update, :destroy]
     resources :boards do
+			resource :msg_to_boards, only: [:index]
+			#参加しているユーザー一覧
+			get 'baords/:id/users' => 'boards#users', as: 'users'
       resources :board_users
       # 申請拒否
       patch 'board_users/:id/reject' => 'board_users#reject', as: "board_reject"

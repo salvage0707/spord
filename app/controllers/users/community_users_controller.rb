@@ -10,7 +10,7 @@ class Users::CommunityUsersController < ApplicationController
 # 作成者側------------------------------------------------------
 
   def index
-    @requests = @community.community_users.where(approval: nil)
+    @requests = @community.community_users.where('approval IS NULL AND user_id != ?', @community.manager_user_id)
   end
 
   def reject_index

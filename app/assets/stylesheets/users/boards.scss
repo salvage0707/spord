@@ -243,11 +243,28 @@
 }
 
 
-
-
-
-
-
-
+.object-users {
+	margin-top: 100px;
+	.user-box{
+		margin-bottom: 40px;
+		padding-top: 20px;
+		border-top: 1px solid #ccc;
+		.image-text, img {
+			float: left;
+		}
+		img {
+			height: 100%;
+			margin-right: 10%;
+			width: 30%;
+			border-radius: 50%;
+		}
+		.image-text {
+			width: 60%;
+			p {
+				margin-top: 10px;
+			}
+		}
+	}
+}
 
 
