@@ -64,7 +64,7 @@ class Users::BoardsController < ApplicationController
   end
 
 	def users
-		@board = Board.find_by(id: params[:board_id)
+		@board = Board.find_by(id: params[:board_id])
 	end
 
   private
