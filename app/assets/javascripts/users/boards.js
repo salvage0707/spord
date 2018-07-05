@@ -19,3 +19,15 @@ function changeBgColor(className) {
 	})
 };
 
+
+function itemSlid(tag) {
+	$(tag).hover(function(){
+		item_now_text = $(this).text();
+		const add_text = $(this).data("add")
+		 $(this).stop().animate({'marginLeft':'15px', 'content':'tesuto'},'normal');
+		 $(this).text(add_text)
+	},function(){
+		 $(this).stop().animate({'marginLeft':'-15px', 'content':'tesuto'},'normal');
+		 $(this).text(item_now_text)
+	})
+}

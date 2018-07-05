@@ -13,6 +13,7 @@ class Users::BoardsController < ApplicationController
   end
 
   def index
+		# 締め切り前のものを最新５件取得
   	@boards = Board.active.first(5)
   end
 
@@ -55,9 +56,8 @@ class Users::BoardsController < ApplicationController
   end
 
   def genre
-    if genre = Sport.find_by(name: params[:genre])
-      @boards = Board.active.where(sport_id: genre.id)
-      render :index
+    if sport = Sport.find_by(name: params[:genre])
+      @boards = Board.active.where(sport_id: sport.id).page(params[:page]).per(10)
     else
       redirect_to boards_path
     end
