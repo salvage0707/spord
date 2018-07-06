@@ -52,9 +52,7 @@
 							<!-- ジャンル -->
 							<% sports_name = community.sport&.name || "" %>
 							<%= detail_list("ジャンル",
-									text_field_tag(:sports_name, sports_name,
-																 class: "community-form-text",
-																 placeholder: "例）テニス、野球、サッカー")) %>
+								f.collection_select(:sport_id, Sport.all, :id, :name)) %>
 							<!-- 応募資格 -->
 							<%= detail_list("応募資格",
 								f.text_field(:qualification,

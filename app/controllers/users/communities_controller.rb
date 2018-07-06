@@ -32,12 +32,8 @@ class Users::CommunitiesController < ApplicationController
   end
 
   def create
-    # 特定のスポーツを代入
-    sports_name = params[:sports_name]
-    sport = Sport.find_name(sports_name)
     # 募集を作成
     @community = Community.new(community_params)
-    @community.sport_id = sport.id
     if @community.save
       @community.community_users.create(user_id: current_user.id,
                                         approval: true)
@@ -67,6 +63,7 @@ class Users::CommunitiesController < ApplicationController
     def community_params
       params.require(:community).permit(:name,
                                         :image,
+																				:sport_id,
                                         :qualification,
                                         :area_id,
                                         :city,

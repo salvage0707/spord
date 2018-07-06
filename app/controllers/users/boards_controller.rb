@@ -22,12 +22,8 @@ class Users::BoardsController < ApplicationController
   end
 
   def create
-    # 特定のスポーツを代入
-    sports_name = params[:sports_name]
-    sport = Sport.find_name(sports_name)
     # 募集を作成
     @board = Board.new(board_params)
-    @board.sport_id = sport.id
     if @board.save
       @board.board_users.create(user_id: current_user.id,
                                 approval: true,)
@@ -72,6 +68,7 @@ class Users::BoardsController < ApplicationController
     def board_params
       params.require(:board).permit(:name,
                                     :image,
+																		:sport_id,
                                     :qualification,
                                     :area_id,
                                     :city,
