@@ -16,9 +16,6 @@ class Users::CommunitiesController < ApplicationController
 
   def update
     # 特定のスポーツを代入
-    sports_name = params[:sports_name]
-    sport = Sport.find_name(sports_name)
-    @community.sport_id = sport.id
     if @community.update(community_params)
       redirect_to community_path(@community.id)
     else

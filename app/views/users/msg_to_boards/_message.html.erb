@@ -2,13 +2,15 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-offset-3 col-md-6">
-				<%= form_for message, url: send("#{object.model_name.element}_message_create_path") do |f| %>
+				<% if object.model_name.element != "user" %>
+					<%= form_for message, url: send("#{object.model_name.element}_message_create_path") do |f| %>
 					<%= f.label :message, "メッセージ",class: "form-label" %>
 					<%= f.text_area :message, class: "form" %>
 
 					<div class="clearfix">
 						<%= f.submit "送信", class: "submit" %>
 					</div>
+					<% end %>
 				<% end %>
 				
 				<% object.messages.reverse.each do |message| %>
