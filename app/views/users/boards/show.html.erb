@@ -70,33 +70,46 @@
 
 		</div>
 		<div class="row middle-box">
-			<div class="charts col-md-7"></div>
+			<div class="charts col-md-9"></div>
 
 			<!-- 申請などの一覧 -->
-			<div class="requests col-md-5">
+			<div class="requests col-md-3">
 				<div class="item-box">
 					<!-- 作成者のみに制限 -->
 					<% if @board.manager_user == current_user && user_signed_in? %>
-						<%= link_to "ユーザー一覧", board_users_path(@board.id), class: "item" %>
-						<%= link_to "募集を編集", edit_board_path(@board.id), class: "item" %>
-						<%= link_to "申請一覧", board_board_users_path(board_id: @board.id), class: "item" %>
-						<%= link_to "拒否申請一覧", board_board_rejects_path(board_id: @board.id), class: "item" %>
-						<%= link_to "許可申請一覧", board_board_admits_path(board_id: @board.id), class: "item" %>
+						<p class="position">管理者</p>
+						<%= link_to "ユーザー", board_users_path(@board.id), class: "item", data: {add: "User List"} %>
+
+						<%= link_to "メッセージ", board_message_path(@board.id), class: "item", data: {add: "Message List"} %>
+
+						<%= link_to "募集を編集", edit_board_path(@board.id), class: "item", data: {add: "Edit board"} %>
+
+						<%= link_to "申請一覧", board_board_users_path(board_id: @board.id), class: "item", data: {add: "Request List"} %>
+
+						<%= link_to "許可申請一覧", board_board_admits_path(board_id: @board.id), class: "item", data: {add: "Admit List"} %>
+
+						<%= link_to "拒否申請一覧", board_board_rejects_path(board_id: @board.id), class: "item", data: {add: "Reject Lis"} %>
 					<% end %>
 					<!-- 作成者以外 -->
 					<!-- 申請を出していない場合 -->
 					<% if @request == nil && @board.manager_user != current_user %>
-						<%= link_to "参加申請", new_board_board_user_path(board_id: @board.id), class: "item" %>
+						<p class="position">参加ユーザー</p>
+						<%= link_to "参加申請", new_board_board_user_path(board_id: @board.id), class: "item", data: {add: "Join Request"} %>
+
 					<!-- 申請中の場合 -->
 					<% elsif @request && @request.approval == nil %>
-						<%= link_to "申請取り消し", edit_board_board_user_path(board_id: @board.id, id: @request.id), class: "item" %>
+						<p class="position">参加ユーザー</p>
+						<%= link_to "申請取り消し", edit_board_board_user_path(board_id: @board.id, id: @request.id), class: "item", data: {add: "User List"} %>
+
 					<!-- 申請が許可されている場合 -->
 					<% elsif @request && @request.approval == true &&  @board.manager_user != current_user %>
-						<%= link_to "ユーザー一覧", board_users_path(@board.id), class: "item" %>
-						<%= link_to "募集から抜ける", board_board_user_path(board_id: @board.id, id: @request.id), method: :delete,  class: "item" %>
+						<p class="position">参加ユーザー</p>
+						<%= link_to "ユーザー一覧", board_users_path(@board.id), class: "item", data: {add: "User List"} %>
+						<%= link_to "募集から抜ける", board_board_user_path(board_id: @board.id, id: @request.id), method: :delete,  class: "item", data: {add: "User List"} %>
+
 					<% elsif @request && @request.approval == false %>
-						<p class="item rejecting">申請が拒否されています</p>
-					<% else %>
+						<p class="position">参加ユーザー</p>
+						<p class="rejecting">申請が拒否されています</p>
 					<% end %>
 				</div>
 			</div>
@@ -104,7 +117,6 @@
 	</div>
 </div>
 
-
-
-
-
+<script>
+	itemSlid('.item')
+</script>

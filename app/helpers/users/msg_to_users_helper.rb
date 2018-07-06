@@ -1,0 +1,2 @@
+module Users::MsgToUsersHelper
+end

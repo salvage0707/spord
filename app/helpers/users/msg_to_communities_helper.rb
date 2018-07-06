@@ -1,0 +1,2 @@
+module Users::MsgToCommunitiesHelper
+end

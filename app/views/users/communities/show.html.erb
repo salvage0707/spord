@@ -68,6 +68,8 @@
 
 							<%= link_to "ユーザー一覧", community_users_path(@community.id), class: "item", data: {add: "User List"} %>
 
+							<%= link_to "メッセージ", community_message_path(@community.id), class: "item", data: {add: "Message List"} %>
+
 							<%= link_to "コミュニティを編集", edit_community_path(@community.id), class: "item",data: {add: "Edit Community"}  %>
 
 							<%= link_to "申請一覧", community_community_users_path(community_id: @community.id), class: "item" ,data: {add: "Request List"} %>
@@ -82,18 +84,19 @@
 						<!-- 申請を出していない場合 -->
 						<% if @request == nil &&  @community.manager_user != current_user %>
 							<p class="position">参加ユーザー</p>
-							<%= link_to "参加申請", new_community_community_user_path(community_id: @community.id), class: "item" %>
+							<%= link_to "参加申請", new_community_community_user_path(community_id: @community.id), class: "item",data: {add: "Join Request"}  %>
 						<!-- 申請中の場合 -->
 						<% elsif @request && @request.approval == nil %>
 							<p class="position">参加ユーザー</p>
-							<%= link_to "申請取り消し", edit_community_community_user_path(community_id: @community.id, id: @request.id), class: "item" %>
+							<%= link_to "申請取り消し", edit_community_community_user_path(community_id: @community.id, id: @request.id), class: "item",data: {add: "Cancel Request"}  %>
 						<!-- 申請が許可されている場合 -->
 						<% elsif @request && @request.approval == true && @community.manager_user != current_user%>
 							<p class="position">参加ユーザー</p>
-							<%= link_to "コミュニティから抜ける", community_community_user_path(community_id: @community.id, id: @request.id), method: :delete,  class: "item" %>
+							<%= link_to "ユーザー一覧", community_users_path(@community.id), class: "item", data: {add: "User List"} %>
+							<%= link_to "コミュニティから抜ける", community_community_user_path(community_id: @community.id, id: @request.id), method: :delete,  class: "item",data: {add: "Exit Community"}  %>
 						<% elsif @request && @request.approval == false  %>
 							<p class="position">参加ユーザー</p>
-							<p class="item rejecting">申請が拒否されています</p>
+							<p class="rejecting">申請が拒否されています</p>
 						<% end %>
 					</div>
 				</div>

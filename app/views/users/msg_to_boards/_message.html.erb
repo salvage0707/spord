@@ -1,0 +1,35 @@
+<div class="message">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-offset-3 col-md-6">
+				<%= form_for message, url: send("#{object.model_name.element}_message_create_path") do |f| %>
+					<%= f.label :message, "メッセージ",class: "form-label" %>
+					<%= f.text_area :message, class: "form" %>
+
+					<div class="clearfix">
+						<%= f.submit "送信", class: "submit" %>
+					</div>
+				<% end %>
+				
+				<% object.messages.reverse.each do |message| %>
+					<div class="content clearfix">
+						<div class="left clearfix">
+							<%= link_to user_path(message.user.id) do %>
+								<%= user_image_tag message.user %>
+							<% end %>
+						</div>
+						<div class="right clearfix">
+							<p class="name"><%= message.user.name %></p>
+							<p class="time"><%= message.created_at.strftime('%Y-%m-%d %H:%M') %></p>
+							<p class="text"><%= message.message%></p>
+						</div>
+					</div>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	sameHeight("img")
+</script>

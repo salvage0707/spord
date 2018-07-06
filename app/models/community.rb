@@ -6,7 +6,7 @@ class Community < ApplicationRecord
 	belongs_to :area
 	belongs_to :sport
 	belongs_to :manager_user, class_name: "User"
-	has_many :msg_to_community
+	has_many :messages, class_name: "MsgToCommunity"
 	# 中間テーブル
 	has_many :community_purposes, dependent: :destroy
 	has_many :community_users, dependent: :destroy

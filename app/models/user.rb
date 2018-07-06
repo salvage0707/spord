@@ -7,9 +7,10 @@ class User < ApplicationRecord
   attachment :image
 
   belongs_to :area, required: false
-  has_many :msg_to_user
+  has_many :messages, class_name:"MsgToUser", foreign_key: "to_user_id"
   has_many :msg_to_board
   has_many :msg_to_communities
+	has_many :msg_to_users
   # フォロー関係
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
   has_many :following, through: :relationships, source: :followed

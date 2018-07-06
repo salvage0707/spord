@@ -1,1 +1,0 @@
-<%= render 'users/boards/user_index', object: @community%>

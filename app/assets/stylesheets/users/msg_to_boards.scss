@@ -1,3 +1,56 @@
 // Place all the styles related to the users::msg_to_boards controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@import "form";
+
+.content {
+	margin-top: 30px;
+	padding-top: 15px;
+	border-top: 1px solid #ccc;
+}
+
+.message {
+	margin-top: 100px;
+	margin-bottom: 100px;
+	.form-label {
+		font-size: 30px;
+	}
+	.form {
+		@extend %form; 
+		height: 100px;
+		width: 100%;
+	}
+	.submit {
+		float: right;
+		width: 100px;
+		padding: 5px;
+		background-color: #f0f8ff;
+	}
+	
+	.left {
+		float: left;
+		width: 20%;
+		img {
+			width: 100%;
+			border-radius: 50%;
+		}
+		
+	}
+	.right {
+			width: 70%;
+			float: right;
+			.name {
+				font-size: 19px;
+				text-align: left;
+			}
+			.time {
+				font-size: 17px;
+				text-align: right;
+			}
+			.text {
+				font-size: 20px;
+				text-align: left;
+			}
+		}
+}

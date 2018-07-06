@@ -4,8 +4,6 @@
 			<p class="flash-message"></p>
 			<!-- 左側 -->
 			<div class="col-md-5">
-				<p class="relationship-text">
-
 
 				<%= user_image_tag @this_user, class: "user" %>
 
@@ -75,6 +73,7 @@
 					<% if @user == @this_user %>
 						<%= link_to "プロフィールの編集", edit_user_path(@this_user.id), class: "user-edit-btn" %>
 					<% end %>
+					<%= link_to "メッセージ", user_message_path(@this_user.id), class: "user-edit-btn" %>
 				</div>
 			</div> <!-- 左側-->
 

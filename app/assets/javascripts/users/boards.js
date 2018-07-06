@@ -27,7 +27,7 @@ function itemSlid(tag) {
 		 $(this).stop().animate({'marginLeft':'15px', 'content':'tesuto'},'normal');
 		 $(this).text(add_text)
 	},function(){
-		 $(this).stop().animate({'marginLeft':'-15px', 'content':'tesuto'},'normal');
+		 $(this).stop().animate({'marginLeft':'0px', 'content':'tesuto'},'normal');
 		 $(this).text(item_now_text)
 	})
 }

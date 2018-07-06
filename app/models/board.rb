@@ -10,7 +10,7 @@ class Board < ApplicationRecord
 	belongs_to :manager_user, class_name: "User"
 	# 中間テーブル
 	has_many :board_purposes, dependent: :destroy
-	has_many :msg_to_boards, dependent: :destroy
+	has_many :messages, class_name: "MsgToBoard", dependent: :destroy
 	has_many :board_users, dependent: :destroy
 	has_many :board_ranks, dependent: :destroy
 	# 多対多
