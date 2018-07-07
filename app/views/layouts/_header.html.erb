@@ -1,3 +1,4 @@
+<!-- 使用変数　sports_genre: sport.all -->
 <header class="clearfix">
 	<div class="row">
 		<!-- 左 -->
@@ -45,7 +46,7 @@
 			</li>
 			<li>
 				<pre>Genre list  <span>ジャンル一覧</span></pre>
-				<% @sports_genre.each do |sport| %>
+				<% sports_genre.each do |sport| %>
 					<div class="genre-list">
 						<%= link_to sport.name, boards_genre_path(genre: sport.name) %>
 					</div>
@@ -72,7 +73,7 @@
 			</li>
 			<li>
 				<pre>Genre list  <span>ジャンル一覧</span></pre>
-				<% @sports_genre.each do |sport| %>
+				<% sports_genre.each do |sport| %>
 					<div class="genre-list">
 						<%= link_to sport.name, communities_genre_path(genre: sport.name) %>
 					</div>
