@@ -50,7 +50,6 @@
 
 						<ul class="details-table">
 							<!-- ジャンル -->
-							<% sports_name = community.sport&.name || "" %>
 							<%= detail_list("ジャンル",
 								f.collection_select(:sport_id, Sport.all, :id, :name)) %>
 							<!-- 応募資格 -->
