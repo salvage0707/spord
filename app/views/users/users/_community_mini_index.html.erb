@@ -17,7 +17,7 @@
 				<% end %>
 				<!-- コミュニティ紹介 -->
 				<p class="introduction">
-					<%= community.introduction %>
+					<%= truncate( community.introduction, length: 140) %>
 				</p>
 			</div>
 		</div>
