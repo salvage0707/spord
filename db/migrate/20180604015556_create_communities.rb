@@ -1,6 +1,6 @@
 class CreateCommunities < ActiveRecord::Migration[5.2]
   def change
-    create_table :communities do |t|
+    create_table :communities, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' do |t|
       t.string :name
       t.integer :sport_id
       t.string :active_date

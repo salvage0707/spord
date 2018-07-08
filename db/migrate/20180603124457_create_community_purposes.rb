@@ -1,6 +1,6 @@
 class CreateCommunityPurposes < ActiveRecord::Migration[5.2]
   def change
-    create_table :community_purposes do |t|
+    create_table :community_purposes, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' do |t|
       t.integer :community_id
       t.integer :purpose_id
 

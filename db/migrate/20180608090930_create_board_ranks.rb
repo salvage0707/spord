@@ -1,6 +1,6 @@
 class CreateBoardRanks < ActiveRecord::Migration[5.2]
   def change
-    create_table :board_ranks do |t|
+    create_table :board_ranks, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' do |t|
       t.integer :board_id
       t.integer :rank_id
 

@@ -1,6 +1,6 @@
 class CreateUserPurposes < ActiveRecord::Migration[5.2]
   def change
-    create_table :user_purposes do |t|
+    create_table :user_purposes, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' do |t|
       t.integer :user_id
       t.integer :purpose_id
 

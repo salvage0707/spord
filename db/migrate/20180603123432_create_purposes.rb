@@ -1,6 +1,6 @@
 class CreatePurposes < ActiveRecord::Migration[5.2]
   def change
-    create_table :purposes do |t|
+    create_table :purposes, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' do |t|
       t.string :name
 
       t.timestamps

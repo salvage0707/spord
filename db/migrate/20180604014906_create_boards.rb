@@ -1,6 +1,6 @@
 class CreateBoards < ActiveRecord::Migration[5.2]
   def change
-    create_table :boards do |t|
+    create_table :boards, :options => 'ENGINE=InnoDB ROW_FORMAT=DYNAMIC' do |t|
       t.string :name
       t.integer :sport_id
       t.string :do_date
