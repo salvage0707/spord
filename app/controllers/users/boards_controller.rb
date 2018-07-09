@@ -14,7 +14,7 @@ class Users::BoardsController < ApplicationController
 
   def index
 		# 締め切り前のものを最新５件取得
-  	@boards = Board.active.last(5)
+  	@boards = Board.active.page(params[:page]).per(10)
   end
 
   def new

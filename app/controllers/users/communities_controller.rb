@@ -12,7 +12,7 @@ class Users::CommunitiesController < ApplicationController
   end
 
   def index
-    @communities = Community.last(5)
+    @communities = Community.page(params[:page]).per(10)
   end
 
   def edit
