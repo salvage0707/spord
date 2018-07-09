@@ -88,5 +88,8 @@
 				</div>
 			<% end %>
 		</div>
+		<% if @_controller.action_name == "genre" %>
+			<%= paginate @communities%>
+		<% end %>
 	</div>
 </div>

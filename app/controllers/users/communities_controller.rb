@@ -49,7 +49,7 @@ class Users::CommunitiesController < ApplicationController
 
   def genre
     if genre = Sport.find_by(name: params[:genre])
-      @communities = Community.where(sport_id: genre.id)
+      @communities = Community.where(sport_id: genre.id).page(params[:page]).per(10)
       render :index
     else
       redirect_to communities_path
