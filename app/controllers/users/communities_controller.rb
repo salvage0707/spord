@@ -12,7 +12,7 @@ class Users::CommunitiesController < ApplicationController
   end
 
   def index
-    @communities = Community.first(5)
+    @communities = Community.last(5)
   end
 
   def edit
