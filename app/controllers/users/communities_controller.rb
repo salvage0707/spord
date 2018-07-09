@@ -7,7 +7,7 @@ class Users::CommunitiesController < ApplicationController
   def show
     # ユーザーがログインしている場合のみ
     if user_signed_in?
-      @request = @user.community-users.find_by(community_id: @community.id)
+      @request = @user.community_users.find_by(community_id: @community.id)
     end
   end
 
