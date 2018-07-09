@@ -5,6 +5,10 @@ class Users::CommunitiesController < ApplicationController
 
 
   def show
+    # ユーザーがログインしている場合のみ
+    if user_signed_in?
+      @request = @user.board_users.find_by(board_id: @board.id)
+    end
   end
 
   def index
