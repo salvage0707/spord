@@ -47,7 +47,6 @@
 
 					<ul class="details-table details-form">
 						<!-- ジャンル -->
-						<% sports_name = board.sport&.name || "" %>
 						<%= detail_list("ジャンル",
 								f.collection_select(:sport_id, Sport.all, :id, :name)) %>
 						<!-- 応募資格 -->

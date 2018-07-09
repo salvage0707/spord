@@ -38,9 +38,6 @@ class Users::BoardsController < ApplicationController
 
   def update
     # 特定のスポーツを代入
-    sports_name = params[:sports_name]
-    sport = Sport.find_name(sports_name)
-    @board.sport_id = sport.id
     if @board.update(board_params)
       redirect_to board_path(@board.id)
     else
