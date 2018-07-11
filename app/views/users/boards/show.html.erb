@@ -103,7 +103,8 @@
 					<% elsif @request && @request.approval == true &&  @board.manager_user != current_user %>
 						<p class="position">参加ユーザー</p>
 						<%= link_to "ユーザー一覧", board_users_path(@board.id), class: "item", data: {add: "User List"} %>
-						<%= link_to "募集から抜ける", board_board_user_path(board_id: @board.id, id: @request.id), method: :delete,  class: "item", data: {add: "User List"} %>
+						<%= link_to "メッセージ", community_message_path(@community.id), class: "item", data: {add: "Message List"} %>
+						<%= link_to "募集を抜ける", board_board_user_path(board_id: @board.id, id: @request.id), method: :delete,  class: "item", data: {add: "User List"} %>
 
 					<% elsif @request && @request.approval == false %>
 						<p class="position">参加ユーザー</p>
