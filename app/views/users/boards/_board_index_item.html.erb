@@ -50,7 +50,7 @@
 										<!-- ジャンル -->
 										<%= detail_list "ジャンル", board.sport.name %>
 										<!-- 応募資格 -->
-										<%= detail_list "応募資格", "楽しくスポーツしたああああああああああい人！" %>
+										<%= detail_list "応募資格", board.qualification %>
 										<!-- 区域 -->
 										<%= detail_list "区域", "#{board.area.name.to_s}  #{board.city.to_s}" %>
 										<!-- 場所 -->
@@ -65,7 +65,7 @@
 								</div>
 								<div class="col-md-5 details-text">
 									<p>
-										<%= truncate board.introduction, length: 140 %>
+										<%= truncate board.introduction, length: 100 %>
 									</p>
 								</div>
 							</div>
