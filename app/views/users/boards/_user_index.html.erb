@@ -5,14 +5,18 @@
        	<div class="row">
 					<div class="user-box col-md-offset-3 col-md-6">
 						<div class="image">
-							<%= user_image_tag object.manager_user %>
+							<%= link_to user_path(object.manager_user.id) %>
+								<%= user_image_tag object.manager_user %>
+							<% end %>
 						</div>
 						<div class="image-text">
+							<%= link_to user_path(object.manager_user.id) %>
+								<p>
+									名前：　<%= object.manager_user.name %>
+								</p>
+							<% end %>
 							<p>
-								名前：　<%= object.manager_user.name %>
-							</p>
-							<p>
-								<%= object.manager_user.introduction %>
+								<%= truncate object.manager_user.introduction, length: 83 %>
 							</p>
 						</div>
 					</div>
