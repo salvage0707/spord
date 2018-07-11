@@ -24,13 +24,17 @@
 				<div class="col-md-offset-1">
 					<% object.users.where.not(id: object.manager_user.id).each do |user| %>
 						<div class="user-box col-md-5">
-							<%= user_image_tag user %>
+							<%= link_to user_path(user.id) do %>
+								<%= user_image_tag user %>
+							<% end %>
 							<div class="image-text">
+								<%= link_to user_path(user.id) do %>
+									<p>
+										名前：　<%= user.name %>
+									</p>
+								<% end %>
 								<p>
-									名前：　<%= user.name %>
-								</p>
-								<p>
-									<%= user.introduction %>
+									<%= truncate user.introduction, length: 83 %>
 								</p>
 							</div>
 						</div>
